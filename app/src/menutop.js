@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { AppstoreOutlined, CalendarOutlined, LinkOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Divider, Menu, Switch } from 'antd';
-import Option5Component from './Option5Component';
-import Option6Component from './Option6Component';
+import Option5Component from './showcomponent/Option5Component';
+import Option6Component from './showcomponent/Option6Component';
 
 function getItem(label, key, icon, children) {
   return {
@@ -16,24 +16,24 @@ function getItem(label, key, icon, children) {
 // n级菜单
 //改名操作：getItem('流畅度', '5'),
 const items = [
-  getItem('Navigation One', '1', <MailOutlined />),
-  getItem('Navigation Two', '2', <CalendarOutlined />, [
-    getItem('Option 3', '3'),
-    getItem('Option 4', '4'),
-    getItem('Submenu', 'sub1-2', <AppstoreOutlined />, [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
+  getItem('一级菜单1', '1', <MailOutlined />),
+  getItem('一级菜单2', '2', <CalendarOutlined />, [
+    getItem('二级菜单1', '3'),
+    getItem('二级菜单2', '4'),
+    getItem('二级菜单3', 'sub1-2', <AppstoreOutlined />, [
+      getItem('三级菜单1', '5'),
+      getItem('三级菜单2', '6'),
     ]),
   ]),
-  getItem('Navigation Three', 'sub2', <SettingOutlined />, [
-    getItem('Option 7', '7'),
-    getItem('Option 8', '8'),
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
+  getItem('一级菜单3', 'sub2', <SettingOutlined />, [
+    getItem('二级菜单4', '7'),
+    getItem('二级菜单5', '8'),
+    getItem('二级菜单6', '9'),
+    getItem('二级菜单7', '10'),
   ]),
   getItem(
     <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-      Ant Design
+      Ant Design（超链接）
     </a>,
     'link',
     <LinkOutlined />,
@@ -56,6 +56,7 @@ const Manu = () => {
   const handleOptionClick = (key) => {
     setSelectedOption(key);
   };
+
 
   return (
     <>
