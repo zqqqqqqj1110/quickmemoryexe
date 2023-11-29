@@ -2,8 +2,13 @@
 
 import React from 'react';
 
-const Option03Component = () => {
-  return <div>展开文字</div>;
+const Option09Component = () => {
+  return(
+    <div id="mygif">
+        <img src={require('app/src/asset/gif9.gif')} alt="error" />
+        展开文字
+    </div>
+      );
 };
 
-export default Option03Component;
+export default Option09Component;
