@@ -2,8 +2,13 @@
 
 import React from 'react';
 
-const Option03Component = () => {
-  return <div>四周扩展</div>;
+const Option06Component = () => {
+  return(
+    <div id="mygif">
+        <img src={require('app/src/asset/gif6.gif')} alt="error" />
+        四周扩展
+    </div>
+      );
 };
 
-export default Option03Component;
+export default Option06Component;
