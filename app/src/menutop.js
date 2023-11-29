@@ -173,6 +173,24 @@ const App = () => {
         return <Option02Component />;
       case '03':
         return <Option03Component />;
+      case '04':
+        return <Option04Component />;
+      case '05':
+        return <Option05Component />;
+      case '06':
+        return <Option06Component />;
+      case '07':
+        return <Option07Component />;
+      case '08':
+        return <Option08Component />;
+      case '09':
+        return <Option09Component />;
+      case '11':
+        return <Option11Component />;
+      case '12':
+        return <Option12Component />;
+      case '13':
+        return <Option13Component />;        
       // 添加其他 case 语句以处理其他子菜单
       default:
         return null;
