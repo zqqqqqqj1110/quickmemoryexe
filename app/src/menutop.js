@@ -1,81 +1,181 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, CalendarOutlined, LinkOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Divider, Menu, Switch } from 'antd';
-import Option5Component from './showcomponent/Option5Component';
-import Option6Component from './showcomponent/Option6Component';
+import { SettingOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
+import Option01Component from './showcomponent/Option01Component';
+import Option02Component from './showcomponent/Option02Component';
+import Option03Component from './showcomponent/Option03Component';
 
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-
-// n级菜单
-//改名操作：getItem('流畅度', '5'),
 const items = [
-  getItem('一级菜单1', '1', <MailOutlined />),
-  getItem('一级菜单2', '2', <CalendarOutlined />, [
-    getItem('二级菜单1', '3'),
-    getItem('二级菜单2', '4'),
-    getItem('二级菜单3', 'sub1-2', <AppstoreOutlined />, [
-      getItem('三级菜单1', '5'),
-      getItem('三级菜单2', '6'),
-    ]),
-  ]),
-  getItem('一级菜单3', 'sub2', <SettingOutlined />, [
-    getItem('二级菜单4', '7'),
-    getItem('二级菜单5', '8'),
-    getItem('二级菜单6', '9'),
-    getItem('二级菜单7', '10'),
-  ]),
-  getItem(
-    <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-      Ant Design（超链接）
-    </a>,
-    'link',
-    <LinkOutlined />,
-  ),
+  {
+    label: '形象训练',
+    key: 'XXtrain',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        type: 'group',
+        label: '整体感知训练',
+        children: [
+          {
+            label: '发散箭头',
+            key: '01',
+          },
+          {
+            label: '扩大方框',
+            key: '02',
+          },
+          {
+            label: '扩大圆环',
+            key: '03',
+          },
+          {
+            label: '左右拓展',
+            key: '04',
+          },
+          {
+            label: '上下拓展',
+            key: '05',
+          },
+          {
+            label: '四周扩展',
+            key: '06',
+          },
+          {
+            label: '扩大圆周',
+            key: '07',
+          },
+          {
+            label: '展开向下',
+            key: '08',
+          },
+          {
+            label: '展开文字',
+            key: '09',
+          }
+        ],
+      },
+      {
+        type: 'group',
+        label: '扩大视野训练',
+        children: [
+          {
+            label: '水平拓展训练',
+            key: '11',
+          },
+          {
+            label: '两侧向下',
+            key: '12',
+          },
+          {
+            label: '随即闪现',
+            key: '13',
+          }
+        ],
+      },
+      {
+        type: 'group',
+        label: '视读节奏训练',
+        children: [
+          {
+            label: '水平移动',
+            key: '21',
+          },
+          {
+            label: '垂直移动',
+            key: '22',
+          },
+          {
+            label: '星形移动',
+            key: '23',
+          }
+        ],
+      },
+      {
+        type: 'group',
+        label: '流畅度训练',
+        children: [
+          {
+            label: '圆周训练',
+            key: '31',
+          },
+          {
+            label: '八字训练',
+            key: '32',
+          },
+          {
+            label: '曲线训练',
+            key: '33',
+          },
+        ],
+      },
+      {
+        type: 'group',
+        label: '训练',
+        children: [
+          {
+            label: '一点凝视',
+            key: '41',
+          },
+          {
+            label: '方形凝视',
+            key: '42',
+          },
+          {
+            label: '集中凝视',
+            key: '43',
+          }
+        ],
+      },
+      {
+        type: 'group',
+        label: '舒尔特表训练',
+        children: [
+          {
+            label: '中文',
+            key: '51',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: (
+      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+        Navigation Four - Link
+      </a>
+    ),
+    key: 'alipay',
+  },
 ];
+const App = () => {
+  const [current, setCurrent] = useState('mail');
+  const [selectedSubMenu, setSelectedSubMenu] = useState(null);
 
-const Manu = () => {
-  const [mode, setMode] = useState('vertical');
-  const [theme, setTheme] = useState('light');
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const changeMode = (value) => {
-    setMode(value ? 'vertical' : 'inline');
+  const onClick = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+    setSelectedSubMenu(e.key);
   };
 
-  const changeTheme = (value) => {
-    setTheme(value ? 'dark' : 'light');
+  const renderContent = () => {
+    switch (selectedSubMenu) {
+      case '01':
+        return <Option01Component />;
+      case '02':
+        return <Option02Component />;
+      case '03':
+        return <Option03Component />;
+      // 添加其他 case 语句以处理其他子菜单
+      default:
+        return null;
+    }
   };
-
-  const handleOptionClick = (key) => {
-    setSelectedOption(key);
-  };
-
 
   return (
-    <>
-      <Menu
-        style={{
-          width: 256,
-        }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode={mode}
-        theme={theme}
-        items={items}
-        onClick={(e) => handleOptionClick(e.key)}
-      />
-      {/* 根据选中的菜单项渲染相应的组件 */}
-      {selectedOption === '5' && <Option5Component />}
-      {selectedOption === '6' && <Option6Component />}
-    </>
+    <div>
+      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      {renderContent()}
+    </div>
   );
 };
 
-export default Manu;
+export default App;
