@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import Option01Component from './showcomponent/Option01Component';
-import Option02Component from './showcomponent/Option02Component';
-import Option03Component from './showcomponent/Option03Component';
+import Option01Component from './XXtrainComponent/Option01Component';
+import Option02Component from './XXtrainComponent/Option02Component';
+import Option03Component from './XXtrainComponent/Option03Component';
+import Option04Component from './XXtrainComponent/Option04Component';
+import Option05Component from './XXtrainComponent/Option05Component';
+import Option06Component from './XXtrainComponent/Option06Component';
+import Option07Component from './XXtrainComponent/Option07Component';
+import Option08Component from './XXtrainComponent/Option08Component';
+import Option09Component from './XXtrainComponent/Option09Component';
+import Option11Component from './XXtrainComponent/Option11Component';
+import Option12Component from './XXtrainComponent/Option12Component';
+import Option13Component from './XXtrainComponent/Option13Component';
 
 const items = [
   {
