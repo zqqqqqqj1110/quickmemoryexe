@@ -1,41 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import '../css/OptionSS1Component.css'; // 导入样式文件
 
 const OptionSS1Component = () => {
-  const [randomCharacter, setRandomCharacter] = useState('');
+  const [randomChar, setRandomChar] = useState('');
 
   useEffect(() => {
-    const getRandomCharacter = async () => {
-      try {
-        // 获取文件
-        const response = await fetch('../../public/TXT/common.txt');
-        const text = await response.text();
+    // 每隔nms执行
+    const intervalId = setInterval(() => {
+      // 读文件
+      fetch('/TXT/common.txt')
+        .then(response => response.text())
+        .then(data => {
+          // 将文本内容转化为字数组
+          const charArray = data.split('');
 
-        // 分割为字符数组
-        const chineseCharacters = text.trim().split('');
+          // 随机选择一个字
+          const randomIndex = Math.floor(Math.random() * charArray.length);
+          const randomChar = charArray[randomIndex];
+          setRandomChar(randomChar);
+        })
+        .catch(error => console.error('Error reading file:', error));
+    }, 1000); // 1000ms间隔
 
-        // 随机选择一个字
-        const randomIndex = Math.floor(Math.random() * chineseCharacters.length);
-        const randomChar = chineseCharacters[randomIndex];
-
-        setRandomCharacter(randomChar);
-      } catch (error) {
-        console.error('Error fetching or processing data:', error);
-      }
-    };
-
-    // 调用异步函数
-    getRandomCharacter();
-
-    // 定时器
-    const intervalId = setInterval(getRandomCharacter, 1000); // 1000毫秒（1秒）
-
-
+    // 清理定时器
     return () => clearInterval(intervalId);
-  }, []);
+  }, []); // 依赖数组设空
 
   return (
-    <div>
-      单字闪现: {randomCharacter}
+    <div className="text">
+      {randomChar}
     </div>
   );
 };
