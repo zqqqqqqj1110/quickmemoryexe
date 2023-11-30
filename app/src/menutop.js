@@ -16,6 +16,12 @@ import Option13Component from './XXtrainComponent/Option13Component';
 import OptionSS1Component from './SStrainComponent/OptionSS1Component';
 import OptionSS2Component from './SStrainComponent/OptionSS2Component';
 import OptionSS3Component from './SStrainComponent/OptionSS3Component';
+import OptionSD1Component from './SDtrainComponent/OptionSD1Component';
+import OptionSD2Component from './SDtrainComponent/OptionSD2Component';
+import OptionSD3Component from './SDtrainComponent/OptionSD3Component';
+import OptionSD4Component from './SDtrainComponent/OptionSD4Component';
+import OptionZX1Component from './ZXtrainComponent/OptionZX1Component';
+import OptionZX2Component from './ZXtrainComponent/OptionZX2Component';
 
 const items = [
   {
