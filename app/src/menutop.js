@@ -172,6 +172,46 @@ const items = [
   },
 
   {
+    label: '速读训练',
+    key: 'SDtrain',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        label: '子块移动',
+        key: 'SD1',
+      },
+      {
+        label: '视野扩展',
+        key: 'SD2',
+      },
+      {
+        label: '闪读训练',
+        key: 'SD3',
+      },
+      {
+        label: '实战训练',
+        key: 'SD4',
+      },      
+    ]
+  },
+
+  {
+    label: '照相记忆',
+    key: 'ZXtrain',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        label: '书法图片训练',
+        key: 'ZX1',
+      },
+      {
+        label: '记忆训练',
+        key: 'ZX2',
+      },     
+    ]
+  },
+
+  {
     label: (
       <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
         Navigation Four - Link
@@ -222,6 +262,18 @@ const App = () => {
         return <OptionSS2Component/>;
       case 'SS3':
         return <OptionSS3Component/>;
+      case 'SD1':
+        return <OptionSD1Component/>;
+      case 'SD2':
+        return <OptionSD2Component/>;
+      case 'SD3':
+        return <OptionSD3Component/>;
+      case 'SD4':
+        return <OptionSD4Component/>;
+      case 'ZX1':
+        return <OptionZX1Component/>;
+      case 'ZX2':
+        return <OptionZX2Component/>;
       // 添加其他 case 语句以处理其他子菜单
       default:
         return null;
