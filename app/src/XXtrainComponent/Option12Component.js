@@ -5,7 +5,7 @@ import React from 'react';
 const Option12Component = () => {
   return(
     <div id="mygif">
-        <img src={require('app/src/asset/gif12.gif')} alt="error" />
+        <img src={require('../asset/gif1.gif')} alt="error" />
         两侧向下
     </div>
       );

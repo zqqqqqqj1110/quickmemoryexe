@@ -5,7 +5,7 @@ import React from 'react';
 const Option11Component = () => {
   return(
     <div id="mygif">
-        <img src={require('app/src/asset/gif11.gif')} alt="error" />
+        <img src={require('../asset/gif1.gif')} alt="error" />
         水平拓展训练
     </div>
       );

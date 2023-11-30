@@ -13,6 +13,9 @@ import Option09Component from './XXtrainComponent/Option09Component';
 import Option11Component from './XXtrainComponent/Option11Component';
 import Option12Component from './XXtrainComponent/Option12Component';
 import Option13Component from './XXtrainComponent/Option13Component';
+import OptionSS1Component from './SStrainComponent/OptionSS1Component';
+import OptionSS2Component from './SStrainComponent/OptionSS2Component';
+import OptionSS3Component from './SStrainComponent/OptionSS3Component';
 
 const items = [
   {
@@ -145,7 +148,29 @@ const items = [
         ],
       },
     ],
+
   },
+
+  {
+    label: '闪视训练',
+    key: 'SStrain',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        label: '随即单字闪现',
+        key: 'SS1',
+      },
+      {
+        label: '随即多字闪现',
+        key: 'SS2',
+      },
+      {
+        label: '成语闪现',
+        key: 'SS3',
+      },      
+    ]
+  },
+
   {
     label: (
       <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
@@ -191,6 +216,12 @@ const App = () => {
         return <Option12Component />;
       case '13':
         return <Option13Component />;
+      case 'SS1':
+        return <OptionSS1Component/>;
+      case 'SS2':
+        return <OptionSS2Component/>;
+      case 'SS3':
+        return <OptionSS3Component/>;
       // 添加其他 case 语句以处理其他子菜单
       default:
         return null;
