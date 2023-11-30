@@ -1,11 +1,11 @@
-// 记忆训练
+// 视野拓展
 
 import React from 'react';
 
 const OptionZX2Component = () => {
   return(
     <div>
-        记忆训练
+        视野拓展
     </div>
       );
 };
