@@ -20,7 +20,7 @@ const OptionSS1Component = () => {
           setRandomChar(randomChar);
         })
         .catch(error => console.error('Error reading file:', error));
-    }, 1000); // 1000ms间隔
+    }, 1000); // 时间间隔
 
     // 清理定时器
     return () => clearInterval(intervalId);
