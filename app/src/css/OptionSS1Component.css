@@ -1,5 +1,11 @@
 .text {
     font-family: Arial;
     color: blue;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:80vh;
+    font-size: 10em;
   }
   

@@ -7,7 +7,6 @@ const Option02Component = () => {
   return(
     <div id="mygif">
         <img src={require('../asset/gif2.gif')} alt="error" />
-        扩大方框
     </div>
       );
 };
