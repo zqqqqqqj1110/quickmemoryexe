@@ -1,13 +1,13 @@
-// 视野扩展
+// 记忆训练
 
 import React from 'react';
 
-const OptionSD2Component = () => {
+const OptionZX2Component = () => {
   return(
     <div>
-        视野扩展
+        记忆训练
     </div>
       );
 };
 
-export default OptionSD2Component;
+export default OptionZX2Component;
