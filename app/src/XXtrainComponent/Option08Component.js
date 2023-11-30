@@ -5,7 +5,7 @@ import React from 'react';
 const Option08Component = () => {
   return(
     <div id="mygif">
-        <img src={require('../asset/gif1.gif')} alt="error" />
+        <img src={require('../asset/gif8.gif')} alt="error" />
     </div>
       );
 };
