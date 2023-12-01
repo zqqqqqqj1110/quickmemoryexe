@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import '../css/OptionSD1Component.css'; // 导入样式文件
+import '../css/OptionSD1Component.css';
 
 const OptionSD1Component = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
-  const [position, setPosition] = useState('top-left'); // 新增状态来控制位置
+  const [position, setPosition] = useState('top-left'); // 控制位置
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +16,8 @@ const OptionSD1Component = () => {
         // 移除所有换行符
         data = data.replace(/\n/g, '');
 
-        // 每行包含的字符数范围
-        const charsPerLine = Math.floor(Math.random() * 5) + 8; // 8到12之间的随机数
+        // 字符数范围（8-12）
+        const charsPerLine = Math.floor(Math.random() * 5) + 8;
 
         // 计算总字符数
         const totalChars = charsPerLine * 3;
@@ -25,7 +25,7 @@ const OptionSD1Component = () => {
         // 计算下一个要显示的文本
         const nextText = data.slice(startIndex, startIndex + totalChars);
 
-        // 将文本分成三行
+        // 分成三行
         const lines = [];
         for (let i = 0; i < 3; i++) {
           lines.push(nextText.slice(i * charsPerLine, (i + 1) * charsPerLine));
@@ -42,15 +42,13 @@ const OptionSD1Component = () => {
       }
     };
 
-    // 每隔nms执行
     const intervalId = setInterval(fetchData, 1000); // 时间间隔
 
-    // 清理定时器
     return () => clearInterval(intervalId);
-  }, [startIndex]); // 监听startIndex的变化
+  }, [startIndex]);
 
   const getNextPosition = (prevPosition) => {
-    // 定义六个位置，循环切换
+    // 定义六个位置，循环
     const positions = ['top-left', 'top-right', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
     const currentIndex = positions.indexOf(prevPosition);
     const nextIndex = (currentIndex + 1) % positions.length;
