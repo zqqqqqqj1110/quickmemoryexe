@@ -1,0 +1,5 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3*3 */
+    gap: 10px; /* 间隔 */
+  }
