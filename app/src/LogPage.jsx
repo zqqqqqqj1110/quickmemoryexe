@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './css/LogPage.css';
 
 const LogPage = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const [isVip, setIsVip] = useState(false); // 新增状态来保存用户的 VIP 状态
+  const [isVip, setIsVip] = useState(false);
 
   const handleSubmit = async (values) => {
     console.log('Received values of form: ', values);
 
     try {
-      // 发送登录请求，获取用户的 VIP 状态
+      // 添加 loading 状态
+
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
@@ -25,11 +26,30 @@ const LogPage = () => {
         const data = await response.json();
         setIsVip(data.isVip);
 
-        // 登录成功后跳转到 '/app' 页面
+        if (data.time == 0) {
+          const timeResponse = await fetch('http://localhost:3001/check-time', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+
+          if (timeResponse.ok) {
+            const timeData = await timeResponse.json();
+            if (timeData.time === 0) {
+              console.log('试用已结束！');
+              return;
+            }
+          } else {
+            console.error('Check time failed:', timeResponse.statusText);
+          }
+        }
+
         navigate('/app');
       } else {
-        // 登录失败的处理，可以显示错误信息等
-        console.log('Login failed. Please check your credentials.');
+        console.error('Login failed:', response.statusText);
+        message.error('试用期已结束/密码输入错误');
       }
     } catch (error) {
       console.error('Login error:', error);

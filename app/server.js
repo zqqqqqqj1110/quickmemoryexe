@@ -17,28 +17,23 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-  // 如果有需要，也可以设置 'Access-Control-Allow-Credentials' 为 true
-  // res.header('Access-Control-Allow-Credentials', true);
-
   if (req.method === 'OPTIONS') {
-    // 对于预检请求（OPTIONS），直接响应 200 OK，不再继续处理
     res.sendStatus(200);
   } else {
-    // 对于其他请求，继续处理
     next();
   }
 });
 
-
-
 app.use(express.json());
+
+// ... 其他代码
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const query = `SELECT * FROM user WHERE account = ? AND password = ?`;
+  const selectUserQuery = `SELECT * FROM user WHERE account = ?`;
 
-  pool.query(query, [username, password], (error, results) => {
+  pool.query(selectUserQuery, [username], (error, results) => {
     if (error) {
       console.error('Database query error:', error);
       res.status(500).send('Internal Server Error');
@@ -46,14 +41,56 @@ app.post('/login', (req, res) => {
     }
 
     if (results.length > 0) {
-      console.log('is_vip:', results[0].is_vip);
-      res.json({ isVip: results[0].is_vip });
+      // 用户存在，验证密码
+      const storedPassword = results[0].password;
+
+      if (password === storedPassword) {
+        // 密码验证成功
+        console.log('Login successful.');
+        if (results[0].time === 0) {
+          console.log('试用已结束！');
+          res.status(401).send('Unauthorized');
+        } else {
+          // 更新 time 值
+          if (results[0].is_vip === 0) {
+            const updateQuery = `UPDATE user SET time = time - 1 WHERE account = ?`;
+            pool.query(updateQuery, [username], (updateError, updateResults) => {
+              if (updateError) {
+                console.error('Database update error:', updateError);
+                res.status(500).send('Internal Server Error');
+              } else {
+                console.log('Time updated successfully.');
+                res.json({ isVip: results[0].is_vip, time: results[0].time - 1 });
+              }
+            });
+          } else {
+            res.json({ isVip: results[0].is_vip, time: results[0].time });
+          }
+        }
+      } else {
+        // 密码验证失败
+        console.error('Invalid password.');
+        res.status(401).send('Unauthorized');
+      }
     } else {
-      console.log('User not found');
-      res.status(401).send('Unauthorized');
+      // 用户不存在，插入新用户信息
+      const insertQuery = `INSERT INTO user (account, password, is_vip, time) VALUES (?, ?, 0, 5)`;
+
+      pool.query(insertQuery, [username, password], (insertError, insertResults) => {
+        if (insertError) {
+          console.error('Database insert error:', insertError);
+          res.status(500).send('Internal Server Error');
+        } else {
+          console.log('New user added successfully.');
+          res.json({ time: 5 });
+        }
+      });
     }
   });
 });
+
+// ... 其他代码
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
