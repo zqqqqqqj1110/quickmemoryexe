@@ -32,6 +32,7 @@ import OptionSD3Component from './SDtrainComponent/OptionSD3Component';
 import OptionSD4Component from './SDtrainComponent/OptionSD4Component';
 import OptionZX1Component from './ZXtrainComponent/OptionZX1Component';
 import OptionZX2Component from './ZXtrainComponent/OptionZX2Component';
+import SetComponent from './SetComponent';
 
 const items = [
   {
@@ -212,9 +213,14 @@ const items = [
   },
 
   {
+    label: '训练设置',
+    key: 'set',
+  },
+
+  {
     label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
+      <a href="http://8.130.141.48/" target="_blank" rel="noopener noreferrer">
+        官网(可能有?现在的我的博客啊哈哈哈哈哈)
       </a>
     ),
     key: 'alipay',
@@ -294,6 +300,8 @@ const App = () => {
         return <OptionZX1Component/>;
       case 'ZX2':
         return <OptionZX2Component/>;
+      case 'set':
+        return <SetComponent/>;
       // 添加其他 case 语句以处理其他子菜单
       default:
         return null;
