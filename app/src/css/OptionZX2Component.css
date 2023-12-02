@@ -1,13 +1,25 @@
-/* Add styling to the container div */
-.container {
+.container2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3*3 */
-    gap: 10px; /* 间隔 */
+    grid-template-columns: repeat(3, 1fr); 
+    transform: translate(120%, 40%);
+    gap: 8px; /* 间隔 */
+    height:50vh;
+    width:50vh;
+    outline: 10px grey;
+  }
+  .container2::before {
+    content: '';
+    position: absolute;
+    top: -10px; 
+    left: -10px; 
+    right: -10px; 
+    bottom: -10px;
+    background-color: grey; 
+    z-index: -1; 
   }
   
-  /* Style for each image */
-  .container img {
+  .container2 img {
     width: 100%;
-    height: auto;
+    height:100%;
   }
   

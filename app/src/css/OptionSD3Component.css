@@ -1,8 +1,17 @@
 .visible {
-    opacity: 1;
-  }
-  
-  .hidden {
-    opacity: 0;
-  }
-  
+  opacity: 1;
+  font-size: 20px; 
+  color: black;
+  text-align: center; 
+  line-height: 1.5; 
+  font-weight: bold;
+}
+
+.hidden {
+  opacity: 0;
+  font-size: 18px; 
+  color: black;
+  text-align: center; 
+  line-height: 1.5; 
+}
+

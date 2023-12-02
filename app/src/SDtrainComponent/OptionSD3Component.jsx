@@ -34,7 +34,7 @@ const OptionSD3Component = () => {
       }
     };
 
-    const intervalId = setInterval(fetchData, 1000); // 时间间隔
+    const intervalId = setInterval(fetchData, 500); // 时间间隔
 
     return () => clearInterval(intervalId);
   }, [startIndex]);
