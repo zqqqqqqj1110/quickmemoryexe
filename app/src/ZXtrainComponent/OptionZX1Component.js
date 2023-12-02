@@ -27,7 +27,7 @@ const OptionZX1Component = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container1">
       {randomImage && <img src={randomImage} alt="Random Image" />}
     </div>
   );

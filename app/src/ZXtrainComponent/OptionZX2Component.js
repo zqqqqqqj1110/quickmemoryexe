@@ -37,7 +37,7 @@ const OptionZX2Component = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container2">
       {randomImages.map((image, index) => (
         <img key={index} src={image} alt={`Random Image ${index + 1}`} />
       ))}

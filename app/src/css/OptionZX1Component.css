@@ -1,5 +1,13 @@
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3*3 */
-    gap: 10px; /* 间隔 */
-  }
+.container1 {
+  position: relative;
+  height: 90vh;
+}
+
+.container1 img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 30%;
+  max-height: 60%;
+}
