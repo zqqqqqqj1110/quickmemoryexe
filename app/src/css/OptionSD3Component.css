@@ -1,3 +1,9 @@
+.pre-container {
+
+  max-height: 100vh; 
+  margin: 0 auto; 
+  overflow: hidden; 
+}
 .visible {
   opacity: 1;
   font-size: 20px; 
@@ -14,4 +20,3 @@
   text-align: center; 
   line-height: 1.5; 
 }
-
