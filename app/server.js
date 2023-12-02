@@ -26,8 +26,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// ... 其他代码
-
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -88,9 +86,6 @@ app.post('/login', (req, res) => {
     }
   });
 });
-
-// ... 其他代码
-
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
