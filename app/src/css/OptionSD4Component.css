@@ -1,16 +1,21 @@
 .gray-text {
-    color: gray;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .text-content {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 1px;
-    width: 33.33%; /* 将每个 <p> 元素平均分为三列 */
-    box-sizing: border-box;
-    text-align: justify; /* 可以根据需要设置文本对齐方式 */
-  }
-  
+  color: gray;
+  display: block; /* 每个 <p> 元素占一行 */
+  column-count: 3; /*分为三列 */
+  column-fill: balance; /* 平均分布文本 */
+}
+
+.text-content {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-align: justify;
+  break-inside: avoid;
+}
+
+.black-text {
+  color: black !important;
+}
+

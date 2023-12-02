@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import '../css/OptionSD4Component.css'; // 导入样式文件
+import '../css/OptionSD4Component.css';
 
 const OptionSD4Component = () => {
   const [lines, setLines] = useState([]);
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,10 +25,23 @@ const OptionSD4Component = () => {
     fetchData(); // 在组件加载时执行一次
   }, []);
 
+  useEffect(() => {
+    const colorChangeInterval = setInterval(() => {
+      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % lines.length);
+    }, 1000); // 颜色切换的间隔时间
+
+    return () => {
+      clearInterval(colorChangeInterval);
+    };
+  }, [lines]);
+
   return (
     <div className="gray-text">
       {lines.map((line, index) => (
-        <p key={index} className="text-content">
+        <p
+          key={index}
+          className={`text-content ${index === currentColorIndex ? 'black-text' : ''}`}
+        >
           {line}
         </p>
       ))}
