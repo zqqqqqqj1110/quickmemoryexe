@@ -56,18 +56,6 @@ const items = [
             key: '03',
           },
           {
-            label: '左右拓展',
-            key: '04',
-          },
-          {
-            label: '上下拓展',
-            key: '05',
-          },
-          {
-            label: '四周扩展',
-            key: '06',
-          },
-          {
             label: '扩大圆周',
             key: '07',
           },
@@ -195,10 +183,6 @@ const items = [
       {
         label: '子块移动',
         key: 'SD1',
-      },
-      {
-        label: '视野扩展',
-        key: 'SD2',
       },
       {
         label: '闪读训练',
