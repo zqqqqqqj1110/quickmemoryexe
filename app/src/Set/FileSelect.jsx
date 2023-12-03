@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FileProvider } from '../FileContext';
+import { setPath } from '../constant';
 
 const FileListSelect = ({ fileList, onFileSelection, selectedFileName }) => {
   return (
     <div>
-      <h2>File List:</h2>
+      <h2>文本选择</h2>
       <select onChange={onFileSelection} value={selectedFileName}>
-        <option value="">Select a file</option>
+        <option value="">选择文本</option>
         {fileList.map((fileName, index) => (
           <option key={index} value={fileName}>
             {fileName}
@@ -73,6 +73,7 @@ const FileSelect = () => {
       : `${selectedFileName}.txt`;
 
     setSelectedFileName(formattedFileName);
+    setPath(formattedFileName)
 
     // 在选择文件后立即获取所选文件
     try {
@@ -91,7 +92,7 @@ const FileSelect = () => {
   return (
     <div>
       <input type="file" onChange={handleFileChange} />
-      <button onClick={handleFileUpload}>Upload File</button>
+      <button onClick={handleFileUpload}>上传文件</button>
 
       <FileListSelect
         fileList={fileList}
@@ -99,7 +100,7 @@ const FileSelect = () => {
         selectedFileName={selectedFileName}
       />
 
-      <button onClick={handleGetSelectedFile}>Get Selected File</button>
+      <button onClick={handleGetSelectedFile}>确定</button>
 
       {/* 确保正确传递 selectedFileName 到 OptionSD1Component */}
     </div>

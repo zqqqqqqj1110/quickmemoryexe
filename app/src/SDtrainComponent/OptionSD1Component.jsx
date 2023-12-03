@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD1Component.css';
 import { useFileContext, FileProvider } from '../FileContext';
+import { getPath } from '../constant';
 
 const OptionSD1Component = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -12,8 +13,9 @@ const OptionSD1Component = () => {
     const fetchData = async () => {
       try {
         // 构建文件路径
-        console.log('传递路径:', selectedFileName);
-        const filePath = `TXT/${selectedFileName}.txt`;
+        const g = getPath()
+        console.log('传递路径:', g);
+        const filePath = `/TXT/${g}`;
         console.log(filePath);
 
         // 读取文件
