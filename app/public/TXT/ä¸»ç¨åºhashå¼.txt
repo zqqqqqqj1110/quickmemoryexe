@@ -1,0 +1,10 @@
+
+	飞克视读 v2.1.328    2007-9-20
+
+FierceReading.exe 的hash值,请对照:
+MD5:      a073b320775c6fb5bfa7fef9f7d4ced0
+CRC32:    14ab6468
+
+Reading_upgrade.exe 的hash值,请对照:
+MD5:      4610ea5a21c3c9b0d33c7c8d2c61cb54
+CRC32:    9b79d8cb
