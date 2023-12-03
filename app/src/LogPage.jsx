@@ -12,8 +12,6 @@ const LogPage = () => {
     console.log('Received values of form: ', values);
 
     try {
-      // 添加 loading 状态
-
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
@@ -26,7 +24,7 @@ const LogPage = () => {
         const data = await response.json();
         setIsVip(data.isVip);
 
-        if (data.time == 0) {
+        if (data.time === 0) {
           const timeResponse = await fetch('http://localhost:3001/check-time', {
             method: 'POST',
             headers: {
@@ -57,8 +55,11 @@ const LogPage = () => {
   };
 
   return (
-    <div>
-        sssssssssssssssssssssssssssssssssss(帮我加一个大标题，然后美化一下)
+    
+    <div className="login-container">
+      
+      <div className="top-rectangle"></div>
+      <div className="login-title">登录页面</div>
       <Form form={form} onFinish={handleSubmit} className="login-form">
         <Form.Item
           name="username"
@@ -85,6 +86,9 @@ const LogPage = () => {
           <p>欢迎，VIP用户！</p>
         </div>
       )}
+
+      <div className="bottom-rectangle"></div>
+
     </div>
   );
 };
