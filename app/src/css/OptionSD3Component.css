@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../../public/Font/1.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --custom-font: ''; /* 初始值为空字符串 */
+  --custom-font: 'CustomFont';
 }
 
 .visible {
@@ -9,7 +16,7 @@
   text-align: center; 
   line-height: 1.5; 
   font-weight: bold;
-  font-family: var(getFont()); /* 使用 CSS 变量作为字体 */
+  font-family: var(--custom-font);
 }
 
 .hidden {
@@ -18,5 +25,5 @@
   color: black;
   text-align: center; 
   line-height: 1.5; 
-  font-family: var(getFont()); /* 使用 CSS 变量作为字体 */
+  font-family: var(--custom-font);
 }

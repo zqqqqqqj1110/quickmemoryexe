@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD3Component.css';
-import { getPath } from '../constant';
+import { getFont, getPath } from '../constant';
 
 const OptionSD3Component = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -35,6 +35,9 @@ const OptionSD3Component = () => {
 
         // 更新起始索引
         setStartIndex((startIndex + totalChars) % data.length);
+        // 设置字体路径
+        document.documentElement.style.setProperty('--font-path', getFont());
+        console.log(getFont());
       } catch (error) {
         console.error('Error reading file:', error);
       }

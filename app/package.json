@@ -41,11 +41,14 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-webpack-alias": "^2.1.2"
+    "babel-plugin-webpack-alias": "^2.1.2",
+    "file-loader": "^6.2.0"
   },
   "import/resolver": {
     "node": {
-      "paths": ["src"]
+      "paths": [
+        "src"
+      ]
     }
   }
 }
