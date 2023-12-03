@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD3Component.css';
+import { getPath } from '../constant';
 
 const OptionSD3Component = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -8,8 +9,13 @@ const OptionSD3Component = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 读文件
-        const response = await fetch('/TXT/sudu.txt');
+        // 构建文件路径
+        const g = getPath()
+        const filePath = `/TXT/${g}`;
+        console.log(filePath);    //日记
+
+        // 读取文件
+        const response = await fetch(filePath);
         let data = await response.text();
 
         // 移除换行符

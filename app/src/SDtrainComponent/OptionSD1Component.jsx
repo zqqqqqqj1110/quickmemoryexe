@@ -14,9 +14,8 @@ const OptionSD1Component = () => {
       try {
         // 构建文件路径
         const g = getPath()
-        console.log('传递路径:', g);
         const filePath = `/TXT/${g}`;
-        console.log(filePath);
+        console.log(filePath);    //日记
 
         // 读取文件
         const response = await fetch(filePath);

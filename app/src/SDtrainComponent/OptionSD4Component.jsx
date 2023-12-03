@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD4Component.css';
+import { getPath } from '../constant';
 
 const OptionSD4Component = () => {
   const [lines, setLines] = useState([]);
@@ -8,9 +9,14 @@ const OptionSD4Component = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 读文件
-        const response = await fetch('/TXT/sudu.txt');
-        const data = await response.text();
+        // 构建文件路径
+        const g = getPath()
+        const filePath = `/TXT/${g}`;
+        console.log(filePath);    //日记
+
+        // 读取文件
+        const response = await fetch(filePath);
+        let data = await response.text();
 
         // 将文本按行切分
         const linesArray = data.split('\n');
