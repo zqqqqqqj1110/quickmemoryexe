@@ -1,5 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
+const multer = require('multer');
+const path = require('path');
 
 const app = express();
 const port = 3001;
@@ -11,6 +13,18 @@ const pool = mysql.createPool({
   database: 'sudu',
   port: 3306,
 });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/TXT');
+  },
+  filename: (req, file, cb) => {
+    const encodedFileName = encodeURIComponent(file.originalname);
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -26,6 +40,50 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+// 新的文件上传端点
+app.post('/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+
+  const fileName = req.file.originalname;
+
+  // 将文件名插入到数据库中
+  const insertFileNameQuery = 'INSERT INTO files (file_name) VALUES (?)';
+
+  pool.query(insertFileNameQuery, [fileName], (error, results) => {
+    if (error) {
+      console.error('Database insert error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('File name inserted into database successfully.');
+      res.send('File uploaded successfully');
+    }
+  });
+});
+
+
+
+
+// 文件列表端点
+app.get('/fileList', (req, res) => {
+  const fileListQuery = `SELECT file_name FROM files`;
+  
+  pool.query(fileListQuery, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const fileNames = results.map(result => result.file_name);
+    res.json(fileNames);
+  });
+});
+
+
+
+// 登陆
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 

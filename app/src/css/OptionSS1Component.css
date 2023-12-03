@@ -1,11 +1,11 @@
 .text {
-    font-family: Arial;
-    color: black;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:80vh;
-    font-size: 10em;
-  }
-  
+  /* 全局变量 */
+  font-family: var(--main-font), sans-serif;
+  color: black;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-size: 10em;
+}
