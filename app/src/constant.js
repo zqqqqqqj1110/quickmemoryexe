@@ -1,4 +1,5 @@
 let pathValue = ''; // 初始值为空字符串
+let FontValue = '';
 
 export const setPath = (value) => {
   pathValue = value;
@@ -6,5 +7,8 @@ export const setPath = (value) => {
 
 export const getPath = () => pathValue;
 
-export const FONT_FAMILY = 'SelectedFont';
-export const FONT_SIZE = '16px';
+export const setFont = (value) => {
+  FontValue = value;
+};
+
+export const getFont = () => FontValue;

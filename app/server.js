@@ -41,6 +41,8 @@ app.use((req, res, next) => {
   }
 });
 
+
+app.use('/fonts', express.static(path.join(__dirname, 'public/Font')));   // 字体
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

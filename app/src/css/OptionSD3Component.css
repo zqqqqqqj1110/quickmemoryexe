@@ -1,3 +1,7 @@
+:root {
+  --custom-font: ''; /* 初始值为空字符串 */
+}
+
 .visible {
   opacity: 1;
   font-size: 20px; 
@@ -5,6 +9,7 @@
   text-align: center; 
   line-height: 1.5; 
   font-weight: bold;
+  font-family: var(getFont()); /* 使用 CSS 变量作为字体 */
 }
 
 .hidden {
@@ -13,5 +18,5 @@
   color: black;
   text-align: center; 
   line-height: 1.5; 
+  font-family: var(getFont()); /* 使用 CSS 变量作为字体 */
 }
-
