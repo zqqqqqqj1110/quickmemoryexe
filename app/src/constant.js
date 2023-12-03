@@ -5,3 +5,6 @@ export const setPath = (value) => {
 };
 
 export const getPath = () => pathValue;
+
+export const FONT_FAMILY = 'SelectedFont';
+export const FONT_SIZE = '16px';
