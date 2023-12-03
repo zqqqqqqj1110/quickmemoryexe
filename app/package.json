@@ -42,5 +42,10 @@
   },
   "devDependencies": {
     "babel-plugin-webpack-alias": "^2.1.2"
+  },
+  "import/resolver": {
+    "node": {
+      "paths": ["src"]
+    }
   }
 }

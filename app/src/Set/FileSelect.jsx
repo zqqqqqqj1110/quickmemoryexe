@@ -1,14 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { FileProvider } from '../FileContext';
+
+const FileListSelect = ({ fileList, onFileSelection, selectedFileName }) => {
+  return (
+    <div>
+      <h2>File List:</h2>
+      <select onChange={onFileSelection} value={selectedFileName}>
+        <option value="">Select a file</option>
+        {fileList.map((fileName, index) => (
+          <option key={index} value={fileName}>
+            {fileName}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
 
 const FileSelect = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileList, setFileList] = useState([]);
+  const [selectedFileName, setSelectedFileName] = useState('');
 
-  const fetchFileList = () => {
-    fetch('http://localhost:3001/fileList')
-      .then(response => response.json())
-      .then(data => setFileList(data))
-      .catch(error => console.error('Error fetching file list:', error));
+  const fetchFileList = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/fileList');
+      const data = await response.json();
+      setFileList(data);
+    } catch (error) {
+      console.error('Error fetching file list:', error);
+    }
   };
 
   // 页面加载时获取文件列表
@@ -43,19 +64,44 @@ const FileSelect = () => {
     }
   };
 
+  const handleFileSelection = async (event) => {
+    const selectedFileName = event.target.value;
+
+    // 检查文件名是否以 .txt 结尾，如果不是，则添加
+    const formattedFileName = selectedFileName.endsWith('.txt') 
+      ? selectedFileName 
+      : `${selectedFileName}.txt`;
+
+    setSelectedFileName(formattedFileName);
+
+    // 在选择文件后立即获取所选文件
+    try {
+      const response = await fetch(`http://localhost:3001/TXT/${formattedFileName}`);
+      const data = await response.text();
+      console.log('Selected File Content:', data);
+    } catch (error) {
+      console.error('Error reading selected file:', error);
+    }
+  };
+
+  const handleGetSelectedFile = () => {
+    return selectedFileName;
+  };
+
   return (
     <div>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleFileUpload}>Upload File</button>
 
-      <div>
-        <h2>File List:</h2>
-        <ul>
-          {fileList.map((fileName, index) => (
-            <li key={index}>{fileName}</li>
-          ))}
-        </ul>
-      </div>
+      <FileListSelect
+        fileList={fileList}
+        onFileSelection={handleFileSelection}
+        selectedFileName={selectedFileName}
+      />
+
+      <button onClick={handleGetSelectedFile}>Get Selected File</button>
+
+      {/* 确保正确传递 selectedFileName 到 OptionSD1Component */}
     </div>
   );
 };

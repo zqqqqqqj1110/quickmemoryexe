@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
     cb(null, 'public/TXT');
   },
   filename: (req, file, cb) => {
-    const encodedFileName = encodeURIComponent(file.originalname);
     cb(null, file.originalname);
   },
 });
@@ -39,6 +38,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 新的文件上传端点
 app.post('/upload', upload.single('file'), (req, res) => {
