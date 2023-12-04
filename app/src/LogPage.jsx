@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './css/LogPage.css';
+import { setAccount, setPass } from './constant';
 
 const LogPage = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const LogPage = () => {
 
   const handleSubmit = async (values) => {
     console.log('Received values of form: ', values);
+    // 传递
+    setAccount(values.username);
+    setPass(values.password);
 
     try {
       const response = await fetch('http://localhost:3001/login', {

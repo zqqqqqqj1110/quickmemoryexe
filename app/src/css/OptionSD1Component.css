@@ -1,3 +1,7 @@
+:root {
+  --custom-font: 'CustomFont';
+}
+
 .text-container {
     position: absolute;
   }
@@ -37,4 +41,3 @@
   .text-content {
     margin: 0; /* 去除外边距 */
   }
-  

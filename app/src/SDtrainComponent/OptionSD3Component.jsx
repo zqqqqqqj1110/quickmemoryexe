@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD3Component.css';
+import { getFont, getPath } from '../constant';
 
 const OptionSD3Component = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -10,8 +11,13 @@ const OptionSD3Component = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 读文件
-        const response = await fetch('/TXT/sudu.txt');
+        // 构建文件路径
+        const g = getPath()
+        const filePath = `/TXT/${g}`;
+        console.log(filePath);    //日记
+
+        // 读取文件
+        const response = await fetch(filePath);
         let data = await response.text();
 
         // 移除换行符
@@ -37,6 +43,17 @@ const OptionSD3Component = () => {
 
         // 更新起始索引
         setStartIndex((startIndex + totalChars) % data.length);
+
+        // 设置字体路径
+        const fontPath = `/Font/${getFont()}`;
+        // console.log(fontPath)
+        // const fontPath = `/Font/1.ttf`;
+        const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+        const styleElement = document.createElement('style');
+        styleElement.appendChild(document.createTextNode(fontFaceRule));
+        document.head.appendChild(styleElement);
+
       } catch (error) {
         console.error('Error reading file:', error);
       }

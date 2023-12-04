@@ -1,6 +1,10 @@
+:root {
+  --custom-font: 'CustomFont';
+}
+
 .text {
   /* 全局变量 */
-  font-family: var(--main-font), sans-serif;
+  font-family: var(--custom-font);
   color: black;
   margin: 0;
   display: flex;

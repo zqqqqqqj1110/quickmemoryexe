@@ -16,10 +16,13 @@ const pool = mysql.createPool({
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/TXT');
+    if (file.fieldname === 'file') {
+      cb(null, 'public/TXT');
+    } else if (file.fieldname === 'fontFile') {
+      cb(null, 'public/Font'); // 修改为你的字体文件存储路径
+    }
   },
   filename: (req, file, cb) => {
-    const encodedFileName = encodeURIComponent(file.originalname);
     cb(null, file.originalname);
   },
 });
@@ -38,9 +41,12 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(express.json());
 
-// 新的文件上传端点
+app.use('/fonts', express.static(path.join(__dirname, 'public/Font')));   // 字体
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 文件上传端点
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
@@ -63,7 +69,38 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 
 
+// 字体文件上传端点
+const fontStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/Font'); // 修改为你的字体文件存储路径
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
 
+const fontUpload = multer({ storage: fontStorage });
+
+app.post('/upload-font', fontUpload.single('fontFile'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No font file uploaded.');
+  }
+
+  const fileName = req.file.originalname;
+
+  // 将字体文件名插入到数据库中，你需要根据实际情况修改数据库表的结构
+  const insertFontFileNameQuery = 'INSERT INTO font_files (file_name) VALUES (?)';
+
+  pool.query(insertFontFileNameQuery, [fileName], (error, results) => {
+    if (error) {
+      console.error('Database insert error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Font file name inserted into database successfully.');
+      res.json({ message: 'Font file uploaded successfully' });
+    }
+  });
+});
 
 // 文件列表端点
 app.get('/fileList', (req, res) => {
@@ -81,6 +118,21 @@ app.get('/fileList', (req, res) => {
   });
 });
 
+// 字体文件列表端点
+app.get('/fontList', (req, res) => {
+  const fontListQuery = `SELECT file_name FROM font_files`;
+
+  pool.query(fontListQuery, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const fontNames = results.map(result => result.file_name);
+    res.json(fontNames);
+  });
+});
 
 
 // 登陆
@@ -144,6 +196,60 @@ app.post('/login', (req, res) => {
     }
   });
 });
+
+
+// 获取用户列表端点
+app.get('/userList', (req, res) => {
+  const userListQuery = `SELECT id, account, is_vip, time FROM user`;
+  console.log('Executing query:', userListQuery);
+
+  pool.query(userListQuery, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    console.log('Users retrieved successfully:', results);
+    res.json(results);
+  });
+});
+
+// 删除用户端点
+app.delete('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  const deleteUserQuery = 'DELETE FROM user WHERE id = ?';
+
+  pool.query(deleteUserQuery, [userId], (error, results) => {
+    if (error) {
+      console.error('Database delete error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log(`User with id ${userId} deleted successfully.`);
+      res.json({ message: 'User deleted successfully' });
+    }
+  });
+});
+
+// 修改用户信息端点
+app.put('/updateUser/:id', (req, res) => {
+  const userId = req.params.id;
+  const { is_vip, time } = req.body;
+
+  const updateUserQuery = 'UPDATE user SET is_vip = ?, time = ? WHERE id = ?';
+
+  pool.query(updateUserQuery, [is_vip, time, userId], (error, results) => {
+    if (error) {
+      console.error('Database update error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log(`User with id ${userId} updated successfully.`);
+      res.json({ message: 'User updated successfully' });
+    }
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

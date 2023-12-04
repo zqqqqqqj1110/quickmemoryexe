@@ -3,12 +3,25 @@ import '../css/OptionSS1Component.css'; // 导入样式文件
 import { getFont, getPath } from '../constant';
 
 const OptionSS1Component = () => {
+<<<<<<< HEAD
   const [randomChar, setRandomChar] = useState('');
   // 设置字体路径
   const fontPath = `/Font/${getFont()}`;
   // console.log(fontPath)
   // const fontPath = `/Font/1.ttf`;
   const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+=======
+  const [randomChar, setRandomChar] = useState('');
+  // 设置字体路径
+  const fontPath = `/Font/${getFont()}`;
+  // console.log(fontPath)
+  // const fontPath = `/Font/1.ttf`;
+  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(fontFaceRule));
+  document.head.appendChild(styleElement); 
+>>>>>>> e339ee39507031f3c5ca0144c6f14b9a724761a7
 
   const styleElement = document.createElement('style');
   styleElement.appendChild(document.createTextNode(fontFaceRule));

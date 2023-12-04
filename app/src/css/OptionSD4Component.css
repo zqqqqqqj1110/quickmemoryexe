@@ -1,5 +1,10 @@
+:root {
+  --custom-font: 'CustomFont';
+}
+
 .gray-text {
   color: gray;
+  font-family: var(--custom-font);
   display: block; /* 每个 <p> 元素占一行 */
   column-count: 3; /*分为三列 */
   column-fill: balance; /* 平均分布文本 */
@@ -7,6 +12,7 @@
 
 .text-content {
   margin: 0;
+  font-family: var(--custom-font);
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 1px;
