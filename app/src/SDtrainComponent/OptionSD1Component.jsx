@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD1Component.css';
 import { useFileContext, FileProvider } from '../FileContext';
-import { getPath } from '../constant';
+import { getFont, getPath } from '../constant';
 
 const OptionSD1Component = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -45,6 +45,15 @@ const OptionSD1Component = () => {
 
         // 切换位置
         setPosition((prevPosition) => getNextPosition(prevPosition));
+        // 设置字体路径
+        const fontPath = `/Font/${getFont()}`;
+        // console.log(fontPath)
+        // const fontPath = `/Font/1.ttf`;
+        const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+        const styleElement = document.createElement('style');
+        styleElement.appendChild(document.createTextNode(fontFaceRule));
+        document.head.appendChild(styleElement);
       } catch (error) {
         console.error('Error reading file:', error);
       }

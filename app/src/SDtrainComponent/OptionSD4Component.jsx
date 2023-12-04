@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD4Component.css';
-import { getPath } from '../constant';
+import { getFont, getPath } from '../constant';
 
 const OptionSD4Component = () => {
   const [lines, setLines] = useState([]);
@@ -23,6 +23,17 @@ const OptionSD4Component = () => {
 
         // 更新显示的文本
         setLines(linesArray);
+
+        // 设置字体路径
+        const fontPath = `/Font/${getFont()}`;
+        // console.log(fontPath)
+        // const fontPath = `/Font/1.ttf`;
+        const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+        const styleElement = document.createElement('style');
+        styleElement.appendChild(document.createTextNode(fontFaceRule));
+        document.head.appendChild(styleElement);
+
       } catch (error) {
         console.error('Error reading file:', error);
       }
