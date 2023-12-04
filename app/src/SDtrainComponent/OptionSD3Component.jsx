@@ -1,3 +1,5 @@
+// OptionSD3Component.jsx
+
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD3Component.css';
 import { getFont, getPath } from '../constant';
@@ -31,7 +33,13 @@ const OptionSD3Component = () => {
         const nextText = data.slice(startIndex, startIndex + totalChars);
 
         // 更新并保留历史文本
-        setTextList(prevList => [...prevList, nextText]);
+        setTextList(prevList => {
+          // If textList reaches a certain length, reset it
+          if (prevList.length >= 19) {
+            return [nextText];
+          }
+          return [...prevList, nextText];
+        });
 
         // 更新起始索引
         setStartIndex((startIndex + totalChars) % data.length);
@@ -57,7 +65,7 @@ const OptionSD3Component = () => {
   }, [startIndex]);
 
   return (
-    <div>
+    <div className="pre-container">
       {textList.map((text, index) => (
         <pre key={index} className={index === textList.length - 1 ? 'visible' : 'hidden'}>
           {text}

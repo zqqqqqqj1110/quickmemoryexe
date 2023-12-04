@@ -1,15 +1,132 @@
-.login-form {
-  max-width: 300px;
-  padding: 20px;
-  border: 1px solid #ddd;
+/* LogPage.css */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url(../asset/bg.jpg);
+  position: relative;
+}
+
+.top-rectangle,
+.bottom-rectangle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* padding: 10px; */
+  height: 15vh;
+  background-color: rgb(100, 111, 127);
+  overflow: hidden;
+}
+
+.top-rectangle:before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 5% 92%;
+  animation: flashImagesTop 6s steps(6) infinite; /* Adjust the duration (6s) and animation name as needed */
+}
+
+.bottom-rectangle:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  background-size: 5% 92%;
+  animation: flashImagesBottom 6s steps(6) infinite; /* Adjust the duration (6s) and animation name as needed */
+}
+
+@keyframes flashImagesTop {
+  
+  88.8%, 100% {
+    background-image: url('/public/ZXpic/4.png');
+    background-position: 0% 0%;
+  }
+  66.6%, 77.7%{
+    background-image: url('/public/ZXpic/5.png');
+    background-position: 100% 0%;
+  }
+  44.4%, 55.5% {
+    background-image: url('/public/ZXpic/1.png');
+    background-position: 200% 0%;
+  }
+  22.2%, 33.3%  {
+    background-image: url('/public/ZXpic/2.png');
+    background-position: 300% 0%;
+  }
+  0%, 11.1%{
+    background-image: url('/public/ZXpic/3.png');
+    background-position: 400% 0%;
+  }
+}
+
+@keyframes flashImagesBottom {
+  0%, 11.1% {
+    background-image: url('/public/ZXpic/1.png');
+    background-position: 0% 0%;
+  }
+  22.2%, 33.3% {
+    background-image: url('/public/ZXpic/2.png');
+    background-position: 100% 0%;
+  }
+  44.4%, 55.5% {
+    background-image: url('/public/ZXpic/3.png');
+    background-position: 200% 0%;
+  }
+  66.6%, 77.7% {
+    background-image: url('/public/ZXpic/4.png');
+    background-position: 300% 0%;
+  }
+  88.8%, 100% {
+    background-image: url('/public/ZXpic/5.png');
+    background-position: 400% 0%;
+  }
+}
+
+.title-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.page-title {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.top-rectangle {
+  top: 0;
+}
+
+.bottom-rectangle {
+  bottom: 0;
+}
+
+.login-container {
+  width: 50vh;
+  padding: 40px;
+  border: 1px solid #131010;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: white;
+  z-index: 2; /* Ensure the login container is on top of the rectangles */
 }
 
-.login-form-forgot {
-  float: right;
+.login-form {
+  margin-top: 0px;
 }
 
-.login-form-button {
-  width: 100%;
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
