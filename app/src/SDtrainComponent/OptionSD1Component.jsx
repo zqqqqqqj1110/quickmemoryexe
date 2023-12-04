@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import '../css/OptionSD1Component.css';
+import { useFileContext, FileProvider } from '../FileContext';
+import { getPath } from '../constant';
 
 const OptionSD1Component = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [position, setPosition] = useState('top-left'); // 控制位置
+  const { selectedFileName } = useFileContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 读文件
-        const response = await fetch('/TXT/sudu.txt');
+        // 构建文件路径
+        const g = getPath()
+        const filePath = `/TXT/${g}`;
+        console.log(filePath);    //日记
+
+        // 读取文件
+        const response = await fetch(filePath);
         let data = await response.text();
 
         // 移除所有换行符
@@ -45,7 +53,7 @@ const OptionSD1Component = () => {
     const intervalId = setInterval(fetchData, 1000); // 时间间隔
 
     return () => clearInterval(intervalId);
-  }, [startIndex]);
+  }, [startIndex, selectedFileName]);
 
   const getNextPosition = (prevPosition) => {
     // 定义六个位置，循环
