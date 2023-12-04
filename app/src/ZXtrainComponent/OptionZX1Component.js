@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import '../css/OptionZX1Component.css'
+import '../css/OptionZX1Component.css';
+import { getFont, getPath } from '../constant';
 
 const OptionZX1Component = () => {
   const [randomImage, setRandomImage] = useState(null);
+  const fontPath = `/Font/${getFont()}`;
+  // console.log(fontPath)
+  // const fontPath = `/Font/1.ttf`;
+  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(fontFaceRule));
+  document.head.appendChild(styleElement); 
 
   useEffect(() => {
     // 获取PNG图像

@@ -8,7 +8,14 @@ const OptionSD1Component = () => {
   const [displayText, setDisplayText] = useState('');
   const [position, setPosition] = useState('top-left'); // 控制位置
   const { selectedFileName } = useFileContext();
+  const fontPath = `/Font/${getFont()}`;
+  // console.log(fontPath)
+  // const fontPath = `/Font/1.ttf`;
+  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
 
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(fontFaceRule));
+  document.head.appendChild(styleElement); 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +73,7 @@ const OptionSD1Component = () => {
 
   const getNextPosition = (prevPosition) => {
     // 定义六个位置，循环
-    const positions = ['top-left', 'top-right', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
+    const positions = ['top-right', 'top-left', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
     const currentIndex = positions.indexOf(prevPosition);
     const nextIndex = (currentIndex + 1) % positions.length;
     return positions[nextIndex];

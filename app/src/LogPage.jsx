@@ -59,40 +59,40 @@ const LogPage = () => {
   };
 
   return (
-    
-    <div className="login-container">
-      
+    <div>
+      <div className='img'></div>
       <div className="top-rectangle"></div>
-      <div className="login-title">登录页面</div>
-      <Form form={form} onFinish={handleSubmit} className="login-form">
-        <Form.Item
-          name="username"
-          rules={[{ required: true, message: '请输入用户名！' }]}
-        >
-          <Input placeholder="用户名" />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: '请输入密码！' }]}
-        >
-          <Input type="password" placeholder="密码" />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            登录/注册
-          </Button>
-        </Form.Item>
-      </Form>
-
-      {isVip && (
-        <div>
-          {/* 用户是 VIP 的状态展示 */}
-          <p>欢迎，VIP用户！</p>
-        </div>
-      )}
-
       <div className="bottom-rectangle"></div>
+      <div className="login-container">
+        <div className="login-title">登录页面</div>
+    
+        <Form form={form} onFinish={handleSubmit} className="login-form">
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: '请输入用户名！' }]}
+          >
+            <Input placeholder="用户名" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: '请输入密码！' }]}
+          >
+            <Input type="password" placeholder="密码" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              登录/注册
+            </Button>
+          </Form.Item>
+        </Form>
 
+        {isVip && (
+          <div>
+            {/* 用户是 VIP 的状态展示 */}
+            <p>欢迎，VIP用户！</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

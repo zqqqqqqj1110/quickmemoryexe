@@ -5,6 +5,14 @@ import { getFont, getPath } from '../constant';
 const OptionSD4Component = () => {
   const [lines, setLines] = useState([]);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const fontPath = `/Font/${getFont()}`;
+  // console.log(fontPath)
+  // const fontPath = `/Font/1.ttf`;
+  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(fontFaceRule));
+  document.head.appendChild(styleElement); 
 
   useEffect(() => {
     const fetchData = async () => {

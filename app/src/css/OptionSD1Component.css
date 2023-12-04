@@ -7,12 +7,12 @@
   }
   
   .text-container.top-left {
-    top: 200px; /* 顶部距离 */
+    top: 30%; /* 顶部距离 */
     left: 600px; /* 左侧距离 */
   }
   
   .text-container.top-right {
-    top: 200px; /* 顶部距离 */
+    top: 30%; /* 顶部距离 */
     right: 600px; /* 右侧距离 */
   }
   
