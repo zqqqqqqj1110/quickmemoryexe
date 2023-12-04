@@ -1,155 +1,30 @@
-import React, { useState } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
-const items = [
-  {
-    label: 'Navigation One',
-    key: 'mail',
-    icon: <MailOutlined />,
-  },
-  {
-    label: 'Navigation Two',
-    key: 'app',
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <SettingOutlined />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: 'alipay',
-  },
-];
-const App = () => {
-  const [current, setCurrent] = useState('mail');
-  const onClick = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
-};
-export default App;
+// 发散箭头
+import React from 'react';
+import { getFont, getPath } from '../constant';
 
+import '../css/Option01Component.css'; // 导入样式文件
 
+const Option01Component = () => {
+  const fontPath = `/Font/${getFont()}`;
+  // console.log(fontPath)
+  // const fontPath = `/Font/1.ttf`;
+  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
 
------------------------------------------------------------------------------------------------------------------------------------------------
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(fontFaceRule));
+  document.head.appendChild(styleElement); 
+  return(
+  <div id="mygif">
+      < img src={require('../asset/gif1.gif')} alt="error" />
+ 
+  </div>
+    );
 
-
-import React, { useState } from 'react';
-import { AppstoreOutlined, CalendarOutlined, LinkOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Divider, Menu, Switch } from 'antd';
-import Option5Component from './showcomponent/Option5Component';
-import Option6Component from './showcomponent/Option6Component';
-
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  }; 
-}
-
-// n级菜单
-//改名操作：getItem('流畅度', '5'),
-const items = [
-  getItem('一级菜单1', '1', <MailOutlined />),
-  getItem('一级菜单2', '2', <CalendarOutlined />, [
-    getItem('二级菜单1', '3'),
-    getItem('二级菜单2', '4'),
-    getItem('二级菜单3', 'sub1-2', <AppstoreOutlined />, [
-      getItem('三级菜单1', '5'),
-      getItem('三级菜单2', '6'),
-    ]),
-  ]),
-  getItem('一级菜单3', 'sub2', <SettingOutlined />, [
-    getItem('二级菜单4', '7'),
-    getItem('二级菜单5', '8'),
-    getItem('二级菜单6', '9'),
-    getItem('二级菜单7', '10'),
-  ]),
-  getItem(
-    <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-      Ant Design（超链接）
-    </a>,
-    'link',
-    <LinkOutlined />,
-  ),
-];
-
-const Manu = () => {
-  const [mode, setMode] = useState('vertical');
-  const [theme, setTheme] = useState('light');
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const changeMode = (value) => {
-    setMode(value ? 'vertical' : 'inline');
-  };
-
-  const changeTheme = (value) => {
-    setTheme(value ? 'dark' : 'light');
-  };
-
-  const handleOptionClick = (key) => {
-    setSelectedOption(key);
-  };
-
-
-  return (
-    <>
-      <Menu
-        style={{
-          width: 256,
-        }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode={mode}
-        theme={theme}
-        items={items}
-        onClick={(e) => handleOptionClick(e.key)}
-      />
-      {/* 根据选中的菜单项渲染相应的组件 */}
-      {selectedOption === '5' && <Option5Component />}
-      {selectedOption === '6' && <Option6Component />}
-    </>
-  );
+  // return (
+  // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  //   < img src={require('../asset/gif1.gif')} alt="error" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+  // </div>
+    
 };
 
-export default Manu;
+export default Option01Component;

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { setPath } from '../constant';
+import { Select, Button, Upload, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
 
 const FileListSelect = ({ fileList, onFileSelection, selectedFileName }) => {
   return (
-    <div>
-      <h2>文本选择</h2>
-      <select onChange={onFileSelection} value={selectedFileName}>
-        <option value="">选择文本</option>
-        {fileList.map((fileName, index) => (
-          <option key={index} value={fileName}>
-            {fileName}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select style={{ width: 200 }} onChange={onFileSelection} value={selectedFileName}>
+      <Option value="">选择文本</Option>
+      {fileList.map((fileName, index) => (
+        <Option key={index} value={fileName}>
+          {fileName}
+        </Option>
+      ))}
+    </Select>
   );
 };
 
@@ -57,15 +58,19 @@ const FileSelect = () => {
           console.log(result);
           // 上传成功后重新获取文件列表
           fetchFileList();
+          message.success('文件上传成功');
         })
-        .catch(error => console.error('Error uploading file:', error));
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          message.error('文件上传失败');
+        });
     } else {
       console.log('No file selected');
     }
   };
 
-  const handleFileSelection = async (event) => {
-    const selectedFileName = event.target.value;
+  const handleFileSelection = async (value) => {
+    const selectedFileName = value;
 
     // 检查文件名是否以 .txt 结尾，如果不是，则添加
     const formattedFileName = selectedFileName.endsWith('.txt') 
@@ -73,7 +78,7 @@ const FileSelect = () => {
       : `${selectedFileName}.txt`;
 
     setSelectedFileName(formattedFileName);
-    setPath(formattedFileName)
+    setPath(formattedFileName);
 
     // 在选择文件后立即获取所选文件
     try {
@@ -91,16 +96,20 @@ const FileSelect = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleFileUpload}>上传文件</button>
-
+      <Upload beforeUpload={() => false}>
+        选择上传文件：
+        <Button icon={<UploadOutlined />}>选择文本文件</Button>
+      </Upload>
+      <Button type="primary" onClick={handleFileUpload}>上传文件</Button>
+      <br />
+      <br />
       <FileListSelect
         fileList={fileList}
         onFileSelection={handleFileSelection}
         selectedFileName={selectedFileName}
       />
-
-      <button onClick={handleGetSelectedFile}>确定</button>
+      <br />
+      <Button type="primary" onClick={handleGetSelectedFile}>确定</Button>
 
       {/* 确保正确传递 selectedFileName 到 OptionSD1Component */}
     </div>

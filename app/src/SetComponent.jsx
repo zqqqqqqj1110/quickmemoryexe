@@ -14,15 +14,17 @@ const Option03Component = () => {
 
   return (
     <div>
+      <h2>文本选择</h2>
       <FileSelect />
       <br />
       <br />
       <br />
+      <h2>字体选择</h2>
       <FontSelect />
       <br />
       <br />
       <br />
-      {/* 添加条件渲染 */}
+      {/* 添加条件渲染 */}    
       {isAdmin && <p><Custom /></p>}
     </div>
   );
