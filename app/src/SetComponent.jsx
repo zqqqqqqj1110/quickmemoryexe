@@ -1,24 +1,31 @@
-//训练设置
 import React from 'react';
 import FileSelect from './Set/FileSelect';
 import FontSelect from './Set/FontSelect';
 import Custom from './Set/Custom';
+import { getAccount, getPass } from './constant'; // 导入全局变量
 
 const Option03Component = () => {
-  return(
-    <div>
-        <FileSelect />
-        <br />
-        <br />
-        <br />
-        <FontSelect />
-        <br />
-        <br />
-        <br />
-        <p><Custom /></p>
-    </div>
+  // 获取全局账号和密码
+  const account = getAccount();
+  const password = getPass();
 
-      );
+  // 判断是否为 "admin"
+  const isAdmin = account === 'admin' && password === 'admin';
+
+  return (
+    <div>
+      <FileSelect />
+      <br />
+      <br />
+      <br />
+      <FontSelect />
+      <br />
+      <br />
+      <br />
+      {/* 添加条件渲染 */}
+      {isAdmin && <p><Custom /></p>}
+    </div>
+  );
 };
 
 export default Option03Component;
