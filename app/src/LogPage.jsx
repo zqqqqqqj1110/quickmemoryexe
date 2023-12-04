@@ -60,11 +60,9 @@ const LogPage = () => {
 
   return (
     <div>
+      <div className='img'></div>
       <div className="top-rectangle"></div>
       <div className="bottom-rectangle"></div>
-      <div className='top'></div>
-      <div className='bottom'></div>
-      <div className='img'></div>
       <div className="login-container">
         <div className="login-title">登录页面</div>
     

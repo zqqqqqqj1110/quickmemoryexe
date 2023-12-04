@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import FileSelect from './Set/FileSelect';
 import '../css/OptionSS1Component.css'; // 导入样式文件
 import { getFont, getPath } from '../constant';
 

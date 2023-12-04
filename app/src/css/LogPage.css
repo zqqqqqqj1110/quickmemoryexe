@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.top-rectangle:before {
+.top-rectangle::before {
   content: '';
   position: absolute;
   top: 50px;
@@ -29,7 +29,7 @@
   animation: flashImagesTop 6s steps(6) infinite; /* Adjust the duration (6s) and animation name as needed */
 }
 
-.bottom-rectangle:before {
+.bottom-rectangle::before {
   content: '';
   position: absolute;
   top: 0;
