@@ -35,9 +35,17 @@ const OptionSD3Component = () => {
 
         // 更新起始索引
         setStartIndex((startIndex + totalChars) % data.length);
+
         // 设置字体路径
-        document.documentElement.style.setProperty('--font-path', getFont());
-        console.log(getFont());
+        const fontPath = `/Font/${getFont()}`;
+        // console.log(fontPath)
+        // const fontPath = `/Font/1.ttf`;
+        const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+
+        const styleElement = document.createElement('style');
+        styleElement.appendChild(document.createTextNode(fontFaceRule));
+        document.head.appendChild(styleElement);
+
       } catch (error) {
         console.error('Error reading file:', error);
       }

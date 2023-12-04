@@ -13,7 +13,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'Font/[name].[ext]',
+              name: 'Fonts/[name].[ext]',
             },
           },
         ],
