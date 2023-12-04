@@ -1,5 +1,6 @@
 // 发散箭头
 import React from 'react';
+import FileSelect from './Set/FileSelect';
 import '../css/Option01Component.css'; // 导入样式文件
 
 const Option01Component = () => {

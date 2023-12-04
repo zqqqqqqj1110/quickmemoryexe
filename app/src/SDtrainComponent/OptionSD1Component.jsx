@@ -49,7 +49,7 @@ const OptionSD1Component = () => {
 
   const getNextPosition = (prevPosition) => {
     // 定义六个位置，循环
-    const positions = ['top-left', 'top-right', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
+    const positions = ['top-right', 'top-left', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
     const currentIndex = positions.indexOf(prevPosition);
     const nextIndex = (currentIndex + 1) % positions.length;
     return positions[nextIndex];

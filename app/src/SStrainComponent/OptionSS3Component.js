@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import FileSelect from './Set/FileSelect';
 import '../css/OptionSS1Component.css'; // 导入样式文件
 
 const OptionSS3Component = () => {
   const [randomChengyu, setRandomChengyu] = useState('');
+  <div>
+        <FileSelect />
+        <p>字体选择</p>
+        <p>用户权限（管理员专属）</p>
+    </div>
 
   useEffect(() => {
     // 每隔1000ms执行
