@@ -2,6 +2,7 @@
 import React from 'react';
 import FileSelect from './Set/FileSelect';
 import FontSelect from './Set/FontSelect';
+import Custom from './Set/Custom';
 
 const Option03Component = () => {
   return(
@@ -14,7 +15,7 @@ const Option03Component = () => {
         <br />
         <br />
         <br />
-        <p>用户权限（管理员专属）</p>
+        <p><Custom /></p>
     </div>
 
       );

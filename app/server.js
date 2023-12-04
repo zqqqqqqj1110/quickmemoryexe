@@ -197,6 +197,60 @@ app.post('/login', (req, res) => {
   });
 });
 
+
+// 获取用户列表端点
+app.get('/userList', (req, res) => {
+  const userListQuery = `SELECT id, account, is_vip, time FROM user`;
+  console.log('Executing query:', userListQuery);
+
+  pool.query(userListQuery, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    console.log('Users retrieved successfully:', results);
+    res.json(results);
+  });
+});
+
+// 删除用户端点
+app.delete('/user/:id', (req, res) => {
+  const userId = req.params.id;
+  const deleteUserQuery = 'DELETE FROM user WHERE id = ?';
+
+  pool.query(deleteUserQuery, [userId], (error, results) => {
+    if (error) {
+      console.error('Database delete error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log(`User with id ${userId} deleted successfully.`);
+      res.json({ message: 'User deleted successfully' });
+    }
+  });
+});
+
+// 修改用户信息端点
+app.put('/updateUser/:id', (req, res) => {
+  const userId = req.params.id;
+  const { is_vip, time } = req.body;
+
+  const updateUserQuery = 'UPDATE user SET is_vip = ?, time = ? WHERE id = ?';
+
+  pool.query(updateUserQuery, [is_vip, time, userId], (error, results) => {
+    if (error) {
+      console.error('Database update error:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log(`User with id ${userId} updated successfully.`);
+      res.json({ message: 'User updated successfully' });
+    }
+  });
+});
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
