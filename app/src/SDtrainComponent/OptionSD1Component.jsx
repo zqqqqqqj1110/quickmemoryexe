@@ -76,8 +76,14 @@ const OptionSD1Component = () => {
     const positions = ['top-right', 'top-left', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'];
     const currentIndex = positions.indexOf(prevPosition);
     const nextIndex = (currentIndex + 1) % positions.length;
-    return positions[nextIndex];
+    const nextPosition = positions[nextIndex];
+  
+    console.log('prevPosition:', prevPosition);
+    console.log('nextPosition:', nextPosition);
+  
+    return nextPosition;
   };
+  
 
   return (
     <div className={`text-container ${position}`}>
