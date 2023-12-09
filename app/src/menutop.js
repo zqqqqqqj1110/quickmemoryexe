@@ -33,6 +33,8 @@ import OptionSD3Component from './SDtrainComponent/OptionSD3Component';
 import OptionSD4Component from './SDtrainComponent/OptionSD4Component';
 import OptionZX1Component from './ZXtrainComponent/OptionZX1Component';
 import OptionZX2Component from './ZXtrainComponent/OptionZX2Component';
+import OptionZX3Component from './ZXtrainComponent/OptionZX3Component';
+import OptionZX4Component from './ZXtrainComponent/OptionZX4Component';
 import SetComponent from './SetComponent';
 
 const items = [
@@ -213,6 +215,14 @@ const items = [
                 label: '记忆训练',
                 key: 'ZX2',
             },
+            {
+                label: '黄卡训练',
+                key: 'ZX3',
+            },
+            {
+                label: '三色卡训练',
+                key: 'ZX4',
+            },
         ],
     },
 
@@ -306,6 +316,10 @@ const App = () => {
                 return <OptionZX1Component />;
             case 'ZX2':
                 return <OptionZX2Component />;
+            case 'ZX3':
+                return <OptionZX3Component />;
+            case 'ZX4':
+                return <OptionZX4Component />;
             case 'set':
                 return <SetComponent />;
             // 添加其他 case 语句以处理其他子菜单
