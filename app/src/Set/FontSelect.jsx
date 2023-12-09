@@ -44,8 +44,8 @@ const FontSelect = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className='row' style={{ margin: '20px' }}>
+      <div  class="fontselect1">
         <Upload
           accept=".ttf"
           customRequest={({ file, onSuccess, onError }) => {
@@ -66,24 +66,24 @@ const FontSelect = () => {
           }}
           onChange={handleFileChange}
         >
-          <h2>字体上传</h2>
+          <h3>字体上传</h3>
           <Button icon={<UploadOutlined />}>选择字体文件</Button>
         </Upload>
         {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
       </div>
       <br />
-      <div>
+      <div class="fontselect2">
         <label htmlFor="selectFont">
-          <h2>选择字体</h2>
+          <h3>选择字体</h3>
         </label>
         <Select
           id="selectFont"
-          style={{ width: 200, marginTop: 16 }}
+          style={{ width: 200}}
           value={selectedFont} // 将value改为selectedFont
           onChange={(value) => setSelectedFont(value)}
         >
           <Option value="" disabled>
-            选择字体
+            <h3>选择字体</h3>
           </Option>
           {allFonts.map((font, index) => (
             <Option key={font} value={font}> {/* 将value改为字体文件名 */}
@@ -92,8 +92,8 @@ const FontSelect = () => {
           ))}
 </Select>
       </div>
-      <div>
-        <Button type="primary" onClick={handleConfirm}>获取文件名</Button>
+      <div style={{ display: 'flex', justifyContent: 'right' }}>
+        <Button type="primary" onClick={handleConfirm} size="large">获取文件名</Button>
       </div>
     </div>
   );

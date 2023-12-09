@@ -73,7 +73,7 @@ const OptionSD3Component = () => {
             // 更新并保留历史文本
             setTextList((prevList) => {
                 // If textList reaches a certain length, reset it
-                if (prevList.length >= 19) {
+                if (prevList.length >= 10) {
                     return [nextText];
                 }
                 return [...prevList, nextText];
@@ -119,7 +119,7 @@ const OptionSD3Component = () => {
 
     return (
         <FormSettingContext onSummit={onSummit} onReset={onReset} clearTimer={clearTimer}>
-            <div className="pre-container">
+            <div className="pre-container" style={{ maxHeight: '95vh', overflow: 'hidden' }}>
                 {textList.map((text, index) => (
                     <pre
                         key={index}

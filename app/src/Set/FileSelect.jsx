@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, Button, Select, message } from 'antd';
 import { setPath } from '../constant';
+import '../css/XL.css';
 
 const { Option } = Select;
 
@@ -68,8 +69,9 @@ const FileSelect = () => {
   };
 
   return (
-    <div style={{ margin: '20px' }}>
-      <h3>文件上传</h3>
+    <div className='row' style={{ margin: '20px' }}>
+      <div class="fileselect1">
+         <h3>文件上传</h3>
       <Upload
         accept=".txt"
         customRequest={({ file }) => handleFileUpload(file)}
@@ -79,11 +81,12 @@ const FileSelect = () => {
       </Upload>
 
       {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
+      </div>
       <br />
-
-      <h3>选择文件</h3>
+      <div class="fontselect2">
+        <h3>选择文件</h3>
       <Select
-        style={{ width: 200, marginTop: 16 }}
+        style={{ width: 200}}
         placeholder="选择文本"
         onChange={handleFileSelection}
         value={selectedFileName}
@@ -95,9 +98,12 @@ const FileSelect = () => {
         ))}
       </Select>
 
-      <Button type="primary" onClick={handleGetSelectedFile}>
-        确定
-      </Button>
+      </div>
+      
+     <br/>
+     <div style={{ display: 'flex', justifyContent: 'right' }}>
+        <Button type="primary" onClick={handleGetSelectedFile} size="large">确定</Button>
+      </div>
     </div>
   );
 };

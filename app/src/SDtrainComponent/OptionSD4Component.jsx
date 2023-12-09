@@ -137,7 +137,7 @@ const OptionSD4Component = () => {
 
     return (
         <>
-            <div className="gray-text">
+            <div className="gray-text" style={{ maxHeight: '95vh', overflow: 'hidden' }}>
                 {lines.map((line, index) => (
                     <p
                         key={index}

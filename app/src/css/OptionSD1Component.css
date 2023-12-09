@@ -7,35 +7,35 @@
   }
   
   .text-container.top-left {
-    top: 30%; /* 顶部距离 */
-    left: 600px; /* 左侧距离 */
+    top: 10%; /* 顶部距离 */
+    left: 10%; /* 左侧距离 */
   }
   
   .text-container.top-right {
-    top: 30%; /* 顶部距离 */
-    right: 600px; /* 右侧距离 */
+    top: 10%; /* 顶部距离 */
+    right: 10%; /* 右侧距离 */
   }
   
   .text-container.middle-left {
     top: 400px; /* 垂直居中 */
-    left: 600px; /* 左侧距离 */
+    left: 10%; /* 左侧距离 */
     transform: translateY(-50%); /* 保持垂直居中 */
   }
   
   .text-container.middle-right {
     top: 400px; /* 垂直居中 */
-    right: 600px; /* 右侧距离 */
+    right: 10%; /* 右侧距离 */
     transform: translateY(-50%); /* 保持垂直居中 */
   }
   
   .text-container.bottom-left {
     bottom: 400px; /* 底部距离 */
-    left: 600px; /* 左侧距离 */
+    left: 10%; /* 左侧距离 */
   }
   
   .text-container.bottom-right {
     bottom: 400px; /* 底部距离 */
-    right: 600px; /* 右侧距离 */
+    right: 10%; /* 右侧距离 */
   }
   
   .text-content {
