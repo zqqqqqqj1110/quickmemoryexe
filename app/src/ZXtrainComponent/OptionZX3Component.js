@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const OptionZX4Component = () => {
-  const [circleColor, setCircleColor] = useState('red');
+  const [circleColor, setCircleColor] = useState('yellow');
   const [circleRadius, setCircleRadius] = useState(50);
   const [backgroundColor, setBackgroundColor] = useState('black');
   const [circleCount, setCircleCount] = useState(1);

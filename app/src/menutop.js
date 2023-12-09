@@ -35,6 +35,7 @@ import OptionZX1Component from './ZXtrainComponent/OptionZX1Component';
 import OptionZX2Component from './ZXtrainComponent/OptionZX2Component';
 import OptionZX3Component from './ZXtrainComponent/OptionZX3Component';
 import OptionZX4Component from './ZXtrainComponent/OptionZX4Component';
+import OptionZX5Component from './ZXtrainComponent/OptionZX5Component';
 import SetComponent from './SetComponent';
 
 const items = [
@@ -176,7 +177,7 @@ const items = [
                 key: 'SS3',
             },
             {
-                label: '句子闪现',
+                label: '句词闪现',
                 key: 'SS4',
             },
         ],
@@ -223,21 +224,16 @@ const items = [
                 label: '三色卡训练',
                 key: 'ZX4',
             },
+            {
+                label: '曼陀罗卡片训练',
+                key: 'ZX5',
+            },
         ],
     },
 
     {
         label: '训练设置',
         key: 'set',
-    },
-
-    {
-        label: (
-            <a href="http://8.130.141.48/" target="_blank" rel="noopener noreferrer">
-                官网(可能有?现在的我的博客啊哈哈哈哈哈)
-            </a>
-        ),
-        key: 'alipay',
     },
 ];
 const App = () => {
@@ -320,6 +316,8 @@ const App = () => {
                 return <OptionZX3Component />;
             case 'ZX4':
                 return <OptionZX4Component />;
+            case 'ZX5':
+                return <OptionZX5Component />;
             case 'set':
                 return <SetComponent />;
             // 添加其他 case 语句以处理其他子菜单

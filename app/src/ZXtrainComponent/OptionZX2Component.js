@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { getFont, getPath } from '../constant';
-import '../css/OptionZX2Component.css'
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd';
+import { getFont } from '../constant';
+import '../css/OptionZX2Component.css';
 
 const OptionZX2Component = () => {
   const [randomImages, setRandomImages] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
   const fontPath = `/Font/${getFont()}`;
-  // console.log(fontPath)
-  // const fontPath = `/Font/1.ttf`;
-  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
-
-  const styleElement = document.createElement('style');
-  styleElement.appendChild(document.createTextNode(fontFaceRule));
-  document.head.appendChild(styleElement); 
 
   useEffect(() => {
     const loadRandomImages = () => {
@@ -38,18 +33,23 @@ const OptionZX2Component = () => {
     loadRandomImages();
 
     const intervalId = setInterval(() => {
-      loadRandomImages();
+      if (!isPaused) {
+        loadRandomImages();
+      }
     }, 1000);   //定时器
 
     // 在组件卸载时清除定时器
     return () => clearInterval(intervalId);
-  }, []);
+  }, [isPaused]);
 
   return (
     <div className="container2">
       {randomImages.map((image, index) => (
         <img key={index} src={image} alt={`Random Image ${index + 1}`} />
       ))}
+      <Button onClick={() => setIsPaused(!isPaused)}>
+        {isPaused ? '继续' : '暂停'}
+      </Button>
     </div>
   );
 };
