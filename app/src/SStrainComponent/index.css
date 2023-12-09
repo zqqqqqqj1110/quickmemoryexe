@@ -1,0 +1,14 @@
+.form-setting{
+    display: flex;
+    padding-left: 40px;
+    justify-content: space-around;
+    align-items: center;
+}
+.form-setting-form{
+    flex-shrink: 0;
+}
+.form-setting-content{
+    flex: 1;
+    position: relative;
+    height: 80vh;
+}
