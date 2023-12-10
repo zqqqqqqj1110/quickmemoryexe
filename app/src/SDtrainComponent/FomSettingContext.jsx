@@ -34,7 +34,7 @@ const FomSettingContext = ({ onSummit, onReset, clearTimer, children,style={} })
             <div className="form-setting-form">
                 <Form form={form} labelAlign={'right'}>
                     <Form.Item name={'fontsize'} label="字体大小（rem）">
-                        <InputNumber max={15} min={1}></InputNumber>
+                        <InputNumber max={2} min={1}></InputNumber>
                     </Form.Item>
                     <Form.Item name={'timegap'} label="间隔时间（s）">
                         <InputNumber max={10} min={0.1}></InputNumber>

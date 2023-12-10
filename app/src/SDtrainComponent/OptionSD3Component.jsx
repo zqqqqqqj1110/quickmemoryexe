@@ -1,7 +1,7 @@
 // OptionSD3Component.jsx
 
 import React, { useEffect, useState, useContext, useCallback, useRef } from 'react';
-import FormSettingContext from '../SStrainComponent/FomSettingContext';
+import FormSettingContext from './FomSettingContext';
 
 import '../css/OptionSD3Component.css';
 import { getFont, getPath } from '../constant';

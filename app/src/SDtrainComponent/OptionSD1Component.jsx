@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useCallback, useRef } from 'rea
 import '../css/OptionSD1Component.css';
 import { useFileContext, FileProvider } from '../FileContext';
 import { getFont, getPath } from '../constant';
-import FormSettingContext from '../SStrainComponent/FomSettingContext';
+import FormSettingContext from './FomSettingContext';
 
 const OptionSD1Component = () => {
     const [startIndex, setStartIndex] = useState(0);

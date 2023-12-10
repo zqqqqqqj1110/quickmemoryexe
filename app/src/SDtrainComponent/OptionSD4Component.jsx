@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback, useRef } from 'react';
-import FormSettingContext from '../SStrainComponent/FomSettingContext';
+import FormSettingContext from './FomSettingContext';
 import { getFont, getPath } from '../constant';
 import { Form, Input, InputNumber, Button } from 'antd';
 import { PlaySquareTwoTone, PauseCircleTwoTone } from '@ant-design/icons';
