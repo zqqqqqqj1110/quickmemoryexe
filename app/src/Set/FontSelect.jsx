@@ -93,7 +93,7 @@ const FontSelect = () => {
 </Select>
       </div>
       <div style={{ display: 'flex', justifyContent: 'right' }}>
-        <Button type="primary" onClick={handleConfirm} size="large">获取文件名</Button>
+        <Button type="primary" onClick={handleConfirm} size="large">确定</Button>
       </div>
     </div>
   );

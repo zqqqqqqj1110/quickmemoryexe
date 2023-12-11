@@ -119,7 +119,7 @@ const OptionSD3Component = () => {
 
     return (
         <FormSettingContext onSummit={onSummit} onReset={onReset} clearTimer={clearTimer}>
-            <div className="pre-container" style={{ maxHeight: '95vh', overflow: 'hidden' }}>
+            <div className="pre-container" style={{ maxHeight: '95vh'}}>
                 {textList.map((text, index) => (
                     <pre
                         key={index}
