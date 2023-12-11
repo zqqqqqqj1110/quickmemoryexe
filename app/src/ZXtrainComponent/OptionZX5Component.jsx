@@ -28,17 +28,21 @@ const OptionZX1Component = () => {
       if (!isPaused) {
         setRandomImage(getRandomImage());
       }
-    }, 1000);   // 定时器
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, [isPaused]);
 
   return (
-    <div className="container1">
-      {randomImage && <img src={randomImage} alt="Random Image" />}
-      <Button onClick={() => setIsPaused(!isPaused)}>
-        {isPaused ? '继续' : '暂停'}
-      </Button>
+    <div style={{ position: 'relative', height: '100vh' }}>
+      <div className="container1">
+        {randomImage && <img src={randomImage} alt="Random Image" />}
+      </div>
+      <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
+        <Button onClick={() => setIsPaused(!isPaused)}>
+          {isPaused ? '继续' : '暂停'}
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const OptionZX4Component = () => {
+const OptionZX3Component = () => {
   const [circleColor, setCircleColor] = useState('yellow');
   const [circleRadius, setCircleRadius] = useState(50);
   const [backgroundColor, setBackgroundColor] = useState('black');
@@ -63,6 +63,11 @@ const OptionZX4Component = () => {
 
   return (
     <div style={containerStyle}>
+      <div style={circleContainerStyle}>
+        {[...Array(circleCount)].map((_, index) => (
+          <div key={index} style={{ ...circleStyle, ...getRandomPosition() }}></div>
+        ))}
+      </div>
       <div style={controlsStyle}>
         <label>背景颜色：</label>
         <input
@@ -93,13 +98,8 @@ const OptionZX4Component = () => {
           style={{ marginRight: '10px' }}
         />
       </div>
-      <div style={circleContainerStyle}>
-        {[...Array(circleCount)].map((_, index) => (
-          <div key={index} style={{ ...circleStyle, ...getRandomPosition() }}></div>
-        ))}
-      </div>
     </div>
   );
 };
 
-export default OptionZX4Component;
+export default OptionZX3Component;
