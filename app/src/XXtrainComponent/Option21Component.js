@@ -12,7 +12,7 @@ const Option21Component = () => {
   document.head.appendChild(styleElement); 
   return(
     <div id="mygif">
-        <img src={require('../asset/gif31.gif')} alt="error" />
+        <img src={require('../asset/gif31.gif').default} alt="error" />
     </div>
       );
 };

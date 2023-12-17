@@ -1,7 +1,11 @@
 // 扩大方框
 
+
+
 import React from 'react';
+
 import { getFont, getPath } from '../constant';
+
 import '../css/Option01Component.css'; // 导入样式文件
 
 const Option02Component = () => {
@@ -15,7 +19,7 @@ const Option02Component = () => {
   document.head.appendChild(styleElement); 
   return(
     <div id="mygif">
-        <img src={require('../asset/gif2.gif')} alt="error" />
+        <img src={require('../asset/gif2.gif').default} alt="error" />
     </div>
       );
 };

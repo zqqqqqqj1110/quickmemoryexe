@@ -36,7 +36,7 @@ const OptionZX1Component = () => {
   return (
     <div style={{ position: 'relative', height: '100vh' }}>
       <div className="container1">
-        {randomImage && <img src={randomImage} alt="Random Image" />}
+        {randomImage && <img src={randomImage.default} alt="Random Image" />}
       </div>
       <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
         <Button onClick={() => setIsPaused(!isPaused)}>

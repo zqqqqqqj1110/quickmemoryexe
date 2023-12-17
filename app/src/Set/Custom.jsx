@@ -14,7 +14,7 @@ const Custom = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/userList');
+      const response = await axios.get('/api/userList');
       console.log('Users from backend:', response.data);
       setUsers(response.data);
     } catch (error) {
@@ -32,7 +32,7 @@ const Custom = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:3001/user/${selectedUser.id}`);
+      await axios.delete(`/api/user/${selectedUser.id}`);
       fetchUsers();
       setSelectedUser(null);
       message.success('用户删除成功');
@@ -55,7 +55,7 @@ const Custom = () => {
         updatedUserData.time = updatedTime;
       }
 
-      await axios.put(`http://localhost:3001/updateUser/${selectedUser.id}`, updatedUserData);
+      await axios.put(`/api/updateUser/${selectedUser.id}`, updatedUserData);
 
       // 更新后刷新用户列表
       fetchUsers();

@@ -14,7 +14,7 @@ const Option09Component = () => {
   document.head.appendChild(styleElement); 
   return(
     <div id="mygif">
-        <img src={require('../asset/gif9.gif')} alt="error" />
+        <img src={require('../asset/gif9.gif').default} alt="error" />
     </div>
       );
 };

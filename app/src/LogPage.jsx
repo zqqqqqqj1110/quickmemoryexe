@@ -16,7 +16,7 @@ const LogPage = () => {
     setPass(values.password);
 
     try {
-      const response = await fetch('http://localhost:3001/login', {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const LogPage = () => {
         setIsVip(data.isVip);
 
         if (data.time === 0) {
-          const timeResponse = await fetch('http://localhost:3001/check-time', {
+          const timeResponse = await fetch('/api/check-time', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

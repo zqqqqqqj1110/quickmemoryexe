@@ -32,7 +32,7 @@ const OptionZX1Component = () => {
 
   return (
     <div className="container1">
-      {randomImage && <img src={randomImage} alt="Random Image" />}
+      {randomImage && <img src={randomImage.default} alt="Random Image" />}
       <Button onClick={() => setIsPaused(!isPaused)}>
         {isPaused ? '继续' : '暂停'}
       </Button>

@@ -45,7 +45,7 @@ const OptionZX2Component = () => {
   return (
     <div className="container2">
       {randomImages.map((image, index) => (
-        <img key={index} src={image} alt={`Random Image ${index + 1}`} />
+        <img key={index} src={image.default} alt={`Random Image ${index + 1}`} />
       ))}
       <Button onClick={() => setIsPaused(!isPaused)}>
         {isPaused ? '继续' : '暂停'}
