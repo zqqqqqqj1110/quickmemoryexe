@@ -1,30 +1,40 @@
-// 发散箭头
-import React from 'react';
-import { getFont, getPath } from '../constant';
-
-import '../css/Option01Component.css'; // 导入样式文件
+import React, { useRef, useEffect } from 'react';
+import '../css/Option01Component.css';
 
 const Option01Component = () => {
-  const fontPath = `/Font/${getFont()}`;
-  // console.log(fontPath)
-  // const fontPath = `/Font/1.ttf`;
-  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
+  const videoRef = useRef(null);
 
-  const styleElement = document.createElement('style');
-  styleElement.appendChild(document.createTextNode(fontFaceRule));
-  document.head.appendChild(styleElement); 
-  return(
-  <div id="mygif">
-      <img src={require('../asset/gif1.gif')} alt="error" />
+  useEffect(() => {
+    const playVideo = async () => {
+      const video = videoRef.current;
+      try {
+        // 设置视频路径
+        video.src = process.env.PUBLIC_URL + '/asset/1.mp4';
 
-  </div>
-    );
+        // 加载视频元数据
+        await video.load();
 
-  // return (
-  // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  //   <img src={require('../asset/gif1.gif')} alt="error" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-  // </div>
-    
+        // 监听视频结束事件
+        video.addEventListener('ended', () => {
+          video.currentTime = 0;
+          video.play();
+        });
+
+        // 播放视频
+        video.play();
+      } catch (error) {
+        console.error('Error loading or playing the video:', error);
+      }
+    };
+
+    playVideo();
+  }, []); // 空数组确保useEffect只运行一次，即在组件挂载后
+
+  return (
+    <div className="video-container">
+      <video ref={videoRef} className="video" controls={false} />
+    </div>
+  );
 };
 
 export default Option01Component;

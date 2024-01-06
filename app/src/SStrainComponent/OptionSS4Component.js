@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, useCallback, useRef } from 'rea
 import '../css/OptionSS1Component.css';
 import { getFont, getPath } from '../constant';
 import FormSettingContext from './FomSettingContext';
+import FileSelect2JZ from '../Set/FileSelect2JZ';
 
 const OptionSS4Component = () => {
     const [randomChars, setRandomChars] = useState('');
@@ -71,7 +72,9 @@ const OptionSS4Component = () => {
             <div className="text" style={{ fontSize: data.fontsize ? data.fontsize + 'rem' : '2rem' }}>
                 {randomChars}
             </div>
+        <FileSelect2JZ />
         </FormSettingContext>
+        
     );
 };
 

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { List, Input, Button, Space, message } from 'antd';
+import { List, Input, Button, Space, message, Form } from 'antd';
+import { setPath, getclassify } from '../constant';
 
 const Custom = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [updatedIsVip, setUpdatedIsVip] = useState('');
-  const [updatedTime, setUpdatedTime] = useState('');
+  const [updatedPassword, setUpdatedPassword] = useState('');
+  const [updatedClassify, setUpdatedClassify] = useState('');
+  const [updatedLsAdmin, setUpdatedLsAdmin] = useState('');
+  const [form] = Form.useForm();
+  const classify = getclassify();
 
   useEffect(() => {
     fetchUsers();
@@ -25,8 +30,10 @@ const Custom = () => {
   const handleUserSelect = (user) => {
     setSelectedUser(user);
     // Reset the input fields when a new user is selected
-    setUpdatedIsVip('');
-    setUpdatedTime('');
+    setUpdatedLsAdmin('');
+    setUpdatedPassword('');
+    setUpdatedClassify('');
+
     message.info(`选中用户: ${user.account}`);
   };
 
@@ -47,12 +54,16 @@ const Custom = () => {
       const updatedUserData = {};
 
       // 只添加非空字段到更新数据对象
-      if (updatedIsVip !== '') {
-        updatedUserData.is_vip = updatedIsVip;
+      if (updatedLsAdmin !== '') {
+        updatedUserData.ls_admin = updatedLsAdmin;
       }
 
-      if (updatedTime !== '') {
-        updatedUserData.time = updatedTime;
+      if (updatedClassify !== '') {
+        updatedUserData.classify = updatedClassify;
+      }
+
+      if (updatedPassword !== '') {
+        updatedUserData.password = updatedPassword;
       }
 
       await axios.put(`http://localhost:3001/updateUser/${selectedUser.id}`, updatedUserData);
@@ -66,16 +77,51 @@ const Custom = () => {
     }
   };
 
+  const handleAddUser = async (values) => {
+    try {
+      values.classify = classify;
+      await axios.post('http://localhost:3001/addUser', values);
+      fetchUsers();
+      message.success('用户添加成功');
+      form.resetFields(); // 重置表单字段
+    } catch (error) {
+      console.error('Error adding user:', error);
+      message.error('添加用户失败');
+    }
+  };
+
   return (
     <div>
       <h2 style={{ fontSize: '24px' }}>用户列表</h2>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h3 style={{ fontSize: '20px', margin: '10px 0' }}>添加用户</h3>
+        <Form form={form} onFinish={handleAddUser}>
+          <div style={{ margin: '10px 0' }}>
+            <label style={{ fontSize: '18px' }}>新 用户名：</label>
+            <Form.Item name="account" rules={[{ required: true, message: '请输入用户名' }]}>
+              <Input type="text" />
+            </Form.Item>
+          </div>
+
+          <div style={{ margin: '10px 0' }}>
+            <label style={{ fontSize: '18px' }}>新 密码 值：</label>
+            <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
+              <Input type="text" />
+            </Form.Item>
+          </div>
+
+          <Button type="primary" htmlType="submit" style={{ marginRight: '10px' }}>添加用户</Button>
+        </Form>
+      </div>
+
       <List
         bordered
         dataSource={users}
         renderItem={(user) => (
           <List.Item onClick={() => handleUserSelect(user)} style={{ cursor: 'pointer' }}>
             <Space direction="vertical">
-              <p style={{ fontSize: '18px' }}>账号: {user.account}  VIP: {user.is_vip}  剩余使用次数: {user.time}</p>
+              <p style={{ fontSize: '18px' }}>账号: {user.account}  密码: {user.password} 管理员: {user.ls_admin} 机构：{user.classify}</p>
             </Space>
           </List.Item>
         )}
@@ -85,22 +131,25 @@ const Custom = () => {
         <div>
           <h3 style={{ fontSize: '20px', margin: '10px 0' }}>选中用户</h3>
           <p style={{ fontSize: '18px' }}>{selectedUser.account}</p>
+
           <div style={{ margin: '10px 0' }}>
-            <label style={{ fontSize: '18px' }}>新 VIP 值：</label>
+            <label style={{ fontSize: '18px' }}>新 密码 值：</label>
             <Input
               type="text"
-              value={updatedIsVip}
-              onChange={(e) => setUpdatedIsVip(e.target.value)}
+              value={updatedPassword}
+              onChange={(e) => setUpdatedPassword(e.target.value)}
             />
           </div>
+
           <div style={{ margin: '10px 0' }}>
-            <label style={{ fontSize: '18px' }}>新 剩余使用次数 值：</label>
+            <label style={{ fontSize: '18px' }}>新 机构 值：</label>
             <Input
               type="text"
-              value={updatedTime}
-              onChange={(e) => setUpdatedTime(e.target.value)}
+              value={updatedClassify}
+              onChange={(e) => setUpdatedClassify(e.target.value)}
             />
           </div>
+
           <Button type="primary" onClick={handleUpdateUser} style={{ marginRight: '10px' }}>更新用户信息</Button>
           <Button type="danger" onClick={handleDeleteUser}>删除用户</Button>
         </div>

@@ -40,7 +40,7 @@ import SetComponent from './SetComponent';
 
 const items = [
     {
-        label: '形象训练',
+        label: '形象训练上',
         key: 'XXtrain',
         icon: <SettingOutlined />,
         children: [
@@ -55,10 +55,6 @@ const items = [
                     {
                         label: '扩大方框',
                         key: '02',
-                    },
-                    {
-                        label: '扩大圆环',
-                        key: '03',
                     },
                     {
                         label: '扩大圆周',
@@ -110,6 +106,15 @@ const items = [
                     },
                 ],
             },
+            
+        ],
+    },
+
+    {
+        label: '形象训练下',
+        key: 'XXXtrain',
+        icon: <SettingOutlined />,
+        children: [
             {
                 type: 'group',
                 label: '流畅度训练',
@@ -156,7 +161,7 @@ const items = [
                     },
                 ],
             },
-        ],
+        ]
     },
 
     {
@@ -165,43 +170,43 @@ const items = [
         icon: <SettingOutlined />,
         children: [
             {
-                label: '随即单字闪现',
+                label: '单字闪现',
                 key: 'SS1',
             },
             {
-                label: '随即多字闪现',
+                label: '成语闪现',
                 key: 'SS2',
             },
             {
-                label: '成语闪现',
+                label: '古诗词闪现',
                 key: 'SS3',
             },
             {
-                label: '句词闪现',
+                label: '句子闪现',
                 key: 'SS4',
             },
         ],
     },
 
-    {
-        label: '速读训练',
-        key: 'SDtrain',
-        icon: <SettingOutlined />,
-        children: [
-            {
-                label: '子块移动',
-                key: 'SD1',
-            },
-            {
-                label: '闪读训练',
-                key: 'SD3',
-            },
-            {
-                label: '实战训练',
-                key: 'SD4',
-            },
-        ],
-    },
+    // {
+    //     label: '速读训练',
+    //     key: 'SDtrain',
+    //     icon: <SettingOutlined />,
+    //     children: [
+    //         {
+    //             label: '子块移动',
+    //             key: 'SD1',
+    //         },
+    //         {
+    //             label: '闪读训练',
+    //             key: 'SD3',
+    //         },
+    //         {
+    //             label: '实战训练',
+    //             key: 'SD4',
+    //         },
+    //     ],
+    // },
 
     {
         label: '照相记忆',
@@ -239,14 +244,22 @@ const items = [
 const App = () => {
     const [current, setCurrent] = useState('mail');
     const [selectedSubMenu, setSelectedSubMenu] = useState(null);
-
+    const [collapsed, setCollapsed] = useState(false);
+  
     const onClick = (e) => {
-        console.log('click ', e);
+      console.log('click ', e);
+      if (e.key === 'collapse') {
+        setCollapsed(!collapsed);
+      } else {
         setCurrent(e.key);
         setSelectedSubMenu(e.key);
+      }
     };
-
+  
     const renderContent = () => {
+      if (collapsed) {
+        return null; // 如果收起状态，不渲染任何内容
+      }
         switch (selectedSubMenu) {
             case '01':
                 return <Option01Component />;
@@ -328,10 +341,10 @@ const App = () => {
 
     return (
         <div>
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
-            {renderContent()}
+          <Menu onClick={onClick} selectedKeys={[current]} mode={collapsed ? 'vertical' : 'horizontal'} items={items} />
+          {renderContent()}
         </div>
-    );
-};
+      );
+    };
 
 export default App;

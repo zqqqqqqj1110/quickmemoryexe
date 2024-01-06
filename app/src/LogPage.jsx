@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './css/LogPage.css';
-import { setAccount, setPass } from './constant';
+import { setAccount, setPass, setclassify, setls_admin } from './constant';
 
 const LogPage = () => {
   const navigate = useNavigate();
@@ -27,29 +27,20 @@ const LogPage = () => {
       if (response.ok) {
         const data = await response.json();
         setIsVip(data.isVip);
+        const lsAdmin = data.lsAdmin;
+        const classify = data.classify;
 
-        if (data.time === 0) {
-          const timeResponse = await fetch('http://localhost:3001/check-time', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          });
+        // 在这里可以使用 lsAdmin 和 classify 的值
+        console.log('ls_admin:', lsAdmin);
+        console.log('classify:', classify);
 
-          if (timeResponse.ok) {
-            const timeData = await timeResponse.json();
-            if (timeData.time === 0) {
-              console.log('试用已结束！');
-              return;
-            }
-          } else {
-            console.error('Check time failed:', timeResponse.statusText);
-          }
-        }
+        //传递
+        setclassify(classify);
+        setls_admin(lsAdmin);
 
         navigate('/app');
       } else {
+        // 处理登录失败的情况
         console.error('Login failed:', response.statusText);
         message.error('试用期已结束/密码输入错误');
       }
@@ -85,13 +76,6 @@ const LogPage = () => {
             </Button>
           </Form.Item>
         </Form>
-
-        {isVip && (
-          <div>
-            {/* 用户是 VIP 的状态展示 */}
-            <p>欢迎，VIP用户！</p>
-          </div>
-        )}
       </div>
     </div>
   );

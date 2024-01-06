@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import { PlaySquareTwoTone, PauseCircleTwoTone } from '@ant-design/icons';
 import './index.css';
+import FileSelect from '../Set/FileSelect';
 
 const FomSettingContext = ({ onSummit, onReset, clearTimer, children,style={} }) => {
     const [form] = Form.useForm();

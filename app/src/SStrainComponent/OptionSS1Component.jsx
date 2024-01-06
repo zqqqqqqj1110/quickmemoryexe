@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, useCallback, useRef } from 'rea
 import '../css/OptionSS1Component.css'; // 导入样式文件
 import { getFont, getPath } from '../constant';
 import FormSettingContext from './FomSettingContext';
+
 const OptionSS1Component = () => {
     const [randomChar, setRandomChar] = useState('');
     const [data, setData] = useState({ fontsize: '', timegap: null });
@@ -72,19 +73,6 @@ const OptionSS1Component = () => {
         const styleElement = document.createElement('style');
         styleElement.appendChild(document.createTextNode(fontFaceRule));
         document.head.appendChild(styleElement);
-        // beginTimer();
-
-        // const intervalId = setInterval(() => {
-        //     fetch('/TXT/common.txt')
-        //         .then((response) => response.text())
-        //         .then((data) => {
-        //             const charArray = data.split('');
-        //             const randomIndex = Math.floor(Math.random() * charArray.length);
-        //             const randomChar = charArray[randomIndex];
-        //             setRandomChar(randomChar);
-        //         })
-        //         .catch((error) => console.error('Error reading file:', error));
-        // }, 1000);
 
         return () => {
             clearInterval(timer.current);

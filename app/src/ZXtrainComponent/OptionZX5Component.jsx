@@ -1,50 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
-import '../css/OptionZX1Component.css';
-import { getFont, getPath } from '../constant';
+import '../css/OptionZX1Component.css'; // 保留原有样式
+import { getFont } from '../constant';
 
-const OptionZX1Component = () => {
-  const [randomImage, setRandomImage] = useState(null);
-  const [isPaused, setIsPaused] = useState(false);
+const OptionZX5Component = () => {
+  const [imageIndex, setImageIndex] = useState(0);
   const fontPath = `/Font/${getFont()}`;
-  const fontFaceRule = `@font-face { font-family: 'CustomFont'; src: url("${fontPath}"); font-weight: normal; font-style: normal; }`;
 
-  const styleElement = document.createElement('style');
-  styleElement.appendChild(document.createTextNode(fontFaceRule));
-  document.head.appendChild(styleElement);
+  const importAll = (r) => r.keys().map(r);
+  const images = importAll(require.context('../../public/Mandala', false, /\.(jpg)$/));
+
+  const getNextImageIndex = () => (imageIndex + 1) % images.length;
+  const getPrevImageIndex = () => (imageIndex - 1 + images.length) % images.length;
 
   useEffect(() => {
-    const importAll = (r) => r.keys().map(r);
-    const images = importAll(require.context('../asset/Mandala', false, /\.(jpg)$/));
-
-    const getRandomImage = () => {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      return images[randomIndex];
-    };
-
-    setRandomImage(getRandomImage());
+    const intervalTime = 1000000;
 
     const intervalId = setInterval(() => {
-      if (!isPaused) {
-        setRandomImage(getRandomImage());
-      }
-    }, 1000);
+      setImageIndex(getNextImageIndex());
+    }, intervalTime);
 
     return () => clearInterval(intervalId);
-  }, [isPaused]);
+  }, [imageIndex]);
+
+  const handlePrevImage = () => {
+    setImageIndex(getPrevImageIndex());
+  };
+
+  const handleNextImage = () => {
+    setImageIndex(getNextImageIndex());
+  };
 
   return (
-    <div style={{ position: 'relative', height: '100vh' }}>
-      <div className="container1">
-        {randomImage && <img src={randomImage} alt="Random Image" />}
-      </div>
-      <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
-        <Button onClick={() => setIsPaused(!isPaused)}>
-          {isPaused ? '继续' : '暂停'}
+    <div className="container1">
+      {images.length > 0 && <img src={images[imageIndex].default} alt="Sequential Image" />}
+      <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', marginBottom: '16px' }}>
+        <Button onClick={handlePrevImage} style={{ marginRight: '8px' }}>
+          前一张
+        </Button>
+        <Button onClick={handleNextImage} style={{ marginLeft: '8px' }}>
+          后一张
         </Button>
       </div>
     </div>
   );
 };
 
-export default OptionZX1Component;
+export default OptionZX5Component;

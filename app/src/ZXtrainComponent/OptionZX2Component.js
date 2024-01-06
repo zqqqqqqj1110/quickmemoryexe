@@ -36,7 +36,7 @@ const OptionZX2Component = () => {
       if (!isPaused) {
         loadRandomImages();
       }
-    }, 1000);   //定时器
+    }, 1000000);   //定时器
 
     // 在组件卸载时清除定时器
     return () => clearInterval(intervalId);
@@ -45,10 +45,10 @@ const OptionZX2Component = () => {
   return (
     <div className="container2">
       {randomImages.map((image, index) => (
-        <img key={index} src={image} alt={`Random Image ${index + 1}`} />
+        <img key={index} src={image.default} alt={`Random Image ${index + 1}`} />
       ))}
       <Button onClick={() => setIsPaused(!isPaused)}>
-        {isPaused ? '继续' : '暂停'}
+        {isPaused ? '继续' : '继续'}
       </Button>
     </div>
   );

@@ -2,6 +2,8 @@ let pathValue = ''; // 初始值为空字符串
 let FontValue = '';
 let AccountValue = '';
 let PassValue = '';
+let classifyValue = '';
+let ls_adminValue = '';
 
 // txt文件名字
 export const setPath = (value) => {
@@ -31,3 +33,17 @@ export const setPass = (value) => {
 };
 
 export const getPass = () => PassValue;
+
+//机构类型
+export const setclassify = (value) => {
+  classifyValue = value;
+};
+
+export const getclassify = () => classifyValue;
+
+// 是否为管理员
+export const setls_admin = (value) => {
+  ls_adminValue = value;
+};
+
+export const getls_admin = () => ls_adminValue;
