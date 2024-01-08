@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Upload, Button, Select, message } from 'antd';
 import { setPath } from '../constant';
 import '../css/XL.css';
+import '../css/SD.css';
 
 const { Option } = Select;
 
@@ -69,7 +70,7 @@ const FileSelect2SC = () => {
   };
 
   return (
-    <div className='row' style={{ margin: '20px' }}>
+    <div className='row' style={{ margin: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div class="fileselect1">
          <h3>文件上传</h3>
       <Upload
@@ -82,8 +83,8 @@ const FileSelect2SC = () => {
 
       {uploadError && <p style={{ color: 'red' }}>{uploadError}</p>}
       </div>
-      <br />
-      <div class="fontselect2">
+      
+      <div class="fontselect2" style={{ marginLeft: '20px' }}>
         <h3>选择文件</h3>
       <Select
         style={{ width: 200}}
@@ -97,12 +98,6 @@ const FileSelect2SC = () => {
           </Option>
         ))}
       </Select>
-
-      </div>
-      
-     <br/>
-     <div style={{ display: 'flex', justifyContent: 'right' }}>
-        <Button type="primary" onClick={handleGetSelectedFile} size="large">确定</Button>
       </div>
     </div>
   );

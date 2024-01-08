@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Upload, Button, Select, message } from 'antd';
 import { setPath } from '../constant';
 import '../css/XL.css';
+import '../css/SD.css';
 
 const { Option } = Select;
 
@@ -97,12 +98,6 @@ const FileSelect2SC = () => {
           </Option>
         ))}
       </Select>
-
-      </div>
-      
-     <br/>
-     <div style={{ display: 'flex', justifyContent: 'right' }}>
-        <Button type="primary" onClick={handleGetSelectedFile} size="large">确定</Button>
       </div>
     </div>
   );

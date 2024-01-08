@@ -1,0 +1,19 @@
+.row {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fileselect1, .fontselect2 {
+    margin: 0;
+  }
+  
+  .fileselect1 h3, .fontselect2 h3 {
+    margin-bottom: 10px;
+  }
+  
+  .fontselect2 {
+    margin-left: 20px;
+  }
+  

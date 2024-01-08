@@ -1,6 +1,22 @@
-import React, { useState } from 'react';
-import { SettingOutlined } from '@ant-design/icons';
+import React, { useState, useRef, useEffect } from 'react';
 import { Menu } from 'antd';
+import {
+    SettingOutlined,
+    HeartOutlined,
+    ExpandOutlined,
+    EyeOutlined,
+    BulbOutlined,
+    PictureOutlined,
+    FormOutlined,
+    RiseOutlined,
+    PlayCircleOutlined,
+    AppstoreAddOutlined,
+    LineChartOutlined,
+    ReadOutlined,
+    BookOutlined,
+    FileTextOutlined,
+    UnorderedListOutlined,
+  } from '@ant-design/icons';
 import Option01Component from './XXtrainComponent/Option01Component';
 import Option02Component from './XXtrainComponent/Option02Component';
 import Option03Component from './XXtrainComponent/Option03Component';
@@ -37,6 +53,7 @@ import OptionZX3Component from './ZXtrainComponent/OptionZX3Component';
 import OptionZX4Component from './ZXtrainComponent/OptionZX4Component';
 import OptionZX5Component from './ZXtrainComponent/OptionZX5Component';
 import SetComponent from './SetComponent';
+import Quanping from './Quanping';
 
 const items = [
     {
@@ -167,7 +184,7 @@ const items = [
     {
         label: '闪视训练',
         key: 'SStrain',
-        icon: <SettingOutlined />,
+        icon: <EyeOutlined />,
         children: [
             {
                 label: '单字闪现',
@@ -187,31 +204,10 @@ const items = [
             },
         ],
     },
-
-    // {
-    //     label: '速读训练',
-    //     key: 'SDtrain',
-    //     icon: <SettingOutlined />,
-    //     children: [
-    //         {
-    //             label: '子块移动',
-    //             key: 'SD1',
-    //         },
-    //         {
-    //             label: '闪读训练',
-    //             key: 'SD3',
-    //         },
-    //         {
-    //             label: '实战训练',
-    //             key: 'SD4',
-    //         },
-    //     ],
-    // },
-
     {
         label: '照相记忆',
         key: 'ZXtrain',
-        icon: <SettingOutlined />,
+        icon: <PlayCircleOutlined />,
         children: [
             {
                 label: '书法图片训练',
@@ -235,16 +231,26 @@ const items = [
             },
         ],
     },
-
     {
         label: '训练设置',
         key: 'set',
+    },
+    {
+        label: '全屏显示',
+        key: 'qp'
     },
 ];
 const App = () => {
     const [current, setCurrent] = useState('mail');
     const [selectedSubMenu, setSelectedSubMenu] = useState(null);
     const [collapsed, setCollapsed] = useState(false);
+    const contentRef = useRef(null);
+  
+    useEffect(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+      }
+    }, [selectedSubMenu]);
   
     const onClick = (e) => {
       console.log('click ', e);
@@ -257,9 +263,18 @@ const App = () => {
     };
   
     const renderContent = () => {
-      if (collapsed) {
-        return null; // 如果收起状态，不渲染任何内容
+      if (collapsed || !selectedSubMenu) {
+        return null;
       }
+  
+      return (
+        <div ref={contentRef}>
+          {renderSelectedComponent()}
+        </div>
+      );
+    };
+
+    const renderSelectedComponent = () => {
         switch (selectedSubMenu) {
             case '01':
                 return <Option01Component />;
@@ -333,7 +348,8 @@ const App = () => {
                 return <OptionZX5Component />;
             case 'set':
                 return <SetComponent />;
-            // 添加其他 case 语句以处理其他子菜单
+            case 'qp':
+                return <Quanping />;
             default:
                 return null;
         }
@@ -341,10 +357,10 @@ const App = () => {
 
     return (
         <div>
-          <Menu onClick={onClick} selectedKeys={[current]} mode={collapsed ? 'vertical' : 'horizontal'} items={items} />
-          {renderContent()}
+            <Menu onClick={onClick} selectedKeys={[current]} mode={collapsed ? 'vertical' : 'horizontal'} items={items} theme="dark" />
+            {renderContent()}
         </div>
-      );
-    };
+    );
+};
 
 export default App;

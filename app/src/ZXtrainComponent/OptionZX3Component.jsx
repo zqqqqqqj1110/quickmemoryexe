@@ -4,7 +4,6 @@ const OptionZX3Component = () => {
   const [circleColor, setCircleColor] = useState('yellow');
   const [circleRadius, setCircleRadius] = useState(50);
   const [backgroundColor, setBackgroundColor] = useState('black');
-  const [circleCount, setCircleCount] = useState(1);
 
   const handleColorChange = (event) => {
     setCircleColor(event.target.value);
@@ -18,20 +17,13 @@ const OptionZX3Component = () => {
     setBackgroundColor(event.target.value);
   };
 
-  const handleCircleCountChange = (event) => {
-    setCircleCount(Number(event.target.value));
-  };
-
-  const getRandomPosition = () => {
-    const randomX = Math.random() * (window.innerWidth - 2 * circleRadius);
-    const randomY = Math.random() * (window.innerHeight - 2 * circleRadius);
-    return { left: `${randomX}px`, top: `${randomY}px` };
-  };
-
   const circleContainerStyle = {
-    position: 'relative',
-    width: '100vw',
-    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'calc(100vh - 100px)',  // Adjusted height to leave space for controls
+    background: backgroundColor,
+    flexDirection: 'column',
   };
 
   const circleStyle = {
@@ -39,22 +31,19 @@ const OptionZX3Component = () => {
     height: `${2 * circleRadius}px`,
     backgroundColor: circleColor,
     borderRadius: '50%',
-    position: 'absolute',
-    ...getRandomPosition(),
-  };
-
-  const containerStyle = {
-    background: backgroundColor,
-    padding: '20px',
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    color: 'white',
+    marginBottom: '20px',
   };
 
   const controlsStyle = {
-    marginBottom: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    padding: '10px',
+    background: 'rgba(0, 0, 0, 0.8)',
   };
 
   const colorPickerStyle = {
@@ -62,11 +51,9 @@ const OptionZX3Component = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
       <div style={circleContainerStyle}>
-        {[...Array(circleCount)].map((_, index) => (
-          <div key={index} style={{ ...circleStyle, ...getRandomPosition() }}></div>
-        ))}
+        <div style={circleStyle}></div>
       </div>
       <div style={controlsStyle}>
         <label>背景颜色：</label>
@@ -88,13 +75,6 @@ const OptionZX3Component = () => {
           type="number"
           value={circleRadius}
           onChange={handleRadiusChange}
-          style={{ marginRight: '10px' }}
-        />
-        <label>数量：</label>
-        <input
-          type="number"
-          value={circleCount}
-          onChange={handleCircleCountChange}
           style={{ marginRight: '10px' }}
         />
       </div>
