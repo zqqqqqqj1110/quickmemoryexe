@@ -19,7 +19,7 @@ const Custom = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/userList');
+      const response = await axios.get('/userList');
       console.log('Users from backend:', response.data);
       setUsers(response.data);
     } catch (error) {
@@ -39,7 +39,7 @@ const Custom = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`/api/user/${selectedUser.id}`);
+      await axios.delete(`/user/${selectedUser.id}`);
       fetchUsers();
       setSelectedUser(null);
       message.success('用户删除成功');
@@ -66,7 +66,7 @@ const Custom = () => {
         updatedUserData.password = updatedPassword;
       }
 
-      await axios.put(`/api/updateUser/${selectedUser.id}`, updatedUserData);
+      await axios.put(`/updateUser/${selectedUser.id}`, updatedUserData);
 
       // 更新后刷新用户列表
       fetchUsers();
@@ -80,7 +80,7 @@ const Custom = () => {
   const handleAddUser = async (values) => {
     try {
       values.classify = classify;
-      await axios.post('api/addUser', values);
+      await axios.post('/addUser', values);
       fetchUsers();
       message.success('用户添加成功');
       form.resetFields(); // 重置表单字段

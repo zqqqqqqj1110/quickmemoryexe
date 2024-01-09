@@ -12,7 +12,7 @@ const FileSelect = () => {
 
   const fetchFileList = async () => {
     try {
-      const response = await fetch('/api/fileList');
+      const response = await fetch('//fileList');
       const data = await response.json();
       setFileList(data);
     } catch (error) {
@@ -28,7 +28,7 @@ const FileSelect = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('/api/upload', {
+    fetch('//upload', {
       method: 'POST',
       body: formData,
     })
@@ -56,7 +56,7 @@ const FileSelect = () => {
     setPath(formattedFileName);
 
     try {
-      const response = await fetch(`/api/TXT/${formattedFileName}`);
+      const response = await fetch(`//TXT/${formattedFileName}`);
       const data = await response.text();
       console.log('Selected File Content:', data);
     } catch (error) {

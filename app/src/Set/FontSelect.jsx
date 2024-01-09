@@ -26,7 +26,7 @@ const FontSelect = () => {
   };
 
   const fetchFontList = () => {
-    fetch('/api/fontList')
+    fetch('//fontList')
       .then(response => response.json())
       .then(data => {
         setAllFonts(data);
@@ -52,7 +52,7 @@ const FontSelect = () => {
             const formData = new FormData();
             formData.append('fontFile', file);
 
-            fetch('/api/upload-font', {
+            fetch('//upload-font', {
               method: 'POST',
               body: formData,
             })
