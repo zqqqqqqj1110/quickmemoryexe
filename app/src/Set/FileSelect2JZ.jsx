@@ -13,7 +13,7 @@ const FileSelect2JZ = () => {
 
   const fetchFileList = async () => {
     try {
-      const response = await fetch('http://localhost:3001/fileList2JZ');
+      const response = await fetch('api/fileList2JZ');
       const data = await response.json();
       setFileList(data);
     } catch (error) {
@@ -29,7 +29,7 @@ const FileSelect2JZ = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('http://localhost:3001/upload2JZ', {
+    fetch('api/upload2JZ', {
       method: 'POST',
       body: formData,
     })
@@ -57,7 +57,7 @@ const FileSelect2JZ = () => {
     setPath(formattedFileName);
 
     try {
-      const response = await fetch(`http://localhost:3001/JZ/${formattedFileName}`);
+      const response = await fetch(`api/JZ/${formattedFileName}`);
       const data = await response.text();
       console.log('Selected File Content:', data);
     } catch (error) {

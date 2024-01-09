@@ -13,7 +13,7 @@ const FileSelect2SC = () => {
 
   const fetchFileList = async () => {
     try {
-      const response = await fetch('http://localhost:3001/fileList2CY');
+      const response = await fetch('api/fileList2CY');
       const data = await response.json();
       setFileList(data);
     } catch (error) {
@@ -29,7 +29,7 @@ const FileSelect2SC = () => {
     const formData = new FormData();
     formData.append('fileCY', file);
 
-    fetch('http://localhost:3001/upload2CY', {
+    fetch('api/upload2CY', {
       method: 'POST',
       body: formData,
     })
@@ -57,7 +57,7 @@ const FileSelect2SC = () => {
     setPath(formattedFileName);
 
     try {
-      const response = await fetch(`http://localhost:3001/CY/${formattedFileName}`);
+      const response = await fetch(`api/CY/${formattedFileName}`);
       const data = await response.text();
       console.log('Selected File Content:', data);
     } catch (error) {

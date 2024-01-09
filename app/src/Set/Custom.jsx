@@ -80,7 +80,7 @@ const Custom = () => {
   const handleAddUser = async (values) => {
     try {
       values.classify = classify;
-      await axios.post('http://localhost:3001/addUser', values);
+      await axios.post('api/addUser', values);
       fetchUsers();
       message.success('用户添加成功');
       form.resetFields(); // 重置表单字段
