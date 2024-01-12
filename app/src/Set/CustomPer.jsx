@@ -19,7 +19,7 @@ const Custom = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`/userListPer?classify=${classify}`);
+      const response = await axios.get(`http://ymq.xqzyyds.top:3001/userListPer?classify=${classify}`);
       console.log('Users from backend:', response.data);
       setUsers(response.data);
     } catch (error) {
