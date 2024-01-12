@@ -57,7 +57,7 @@ const FileSelect2JZ = () => {
     setPath(formattedFileName);
 
     try {
-      const response = await fetch(`/JZ/${formattedFileName}`);
+      const response = await fetch(`http://ymq.xqzyyds.top:3001/JZ/${formattedFileName}`);
       const data = await response.text();
       console.log('Selected File Content:', data);
     } catch (error) {

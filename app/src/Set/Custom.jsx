@@ -19,7 +19,7 @@ const Custom = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/userList');
+      const response = await axios.get('http://ymq.xqzyyds.top:3001/userList');
       console.log('Users from backend:', response.data);
       setUsers(response.data);
     } catch (error) {
@@ -33,13 +33,12 @@ const Custom = () => {
     setUpdatedLsAdmin('');
     setUpdatedPassword('');
     setUpdatedClassify('');
-
     message.info(`选中用户: ${user.account}`);
   };
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`/user/${selectedUser.id}`);
+      await axios.delete(`http://ymq.xqzyyds.top:3001/user/${selectedUser.id}`);
       fetchUsers();
       setSelectedUser(null);
       message.success('用户删除成功');
@@ -66,7 +65,7 @@ const Custom = () => {
         updatedUserData.password = updatedPassword;
       }
 
-      await axios.put(`/updateUser/${selectedUser.id}`, updatedUserData);
+      await axios.put(`http://ymq.xqzyyds.top:3001/updateUser/${selectedUser.id}`, updatedUserData);
 
       // 更新后刷新用户列表
       fetchUsers();
@@ -80,7 +79,7 @@ const Custom = () => {
   const handleAddUser = async (values) => {
     try {
       values.classify = classify;
-      await axios.post('/addUser', values);
+      await axios.post('http://ymq.xqzyyds.top:3001/addUser', values);
       fetchUsers();
       message.success('用户添加成功');
       form.resetFields(); // 重置表单字段
