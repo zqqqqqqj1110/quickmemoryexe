@@ -26,7 +26,7 @@ const FontSelect = () => {
   };
 
   const fetchFontList = () => {
-    fetch('//fontList')
+    fetch('http://ymq.xqzyyds.top:3001/fontList')
       .then(response => response.json())
       .then(data => {
         setAllFonts(data);
@@ -52,7 +52,7 @@ const FontSelect = () => {
             const formData = new FormData();
             formData.append('fontFile', file);
 
-            fetch('//upload-font', {
+            fetch('http://ymq.xqzyyds.top:3001/upload-font', {
               method: 'POST',
               body: formData,
             })

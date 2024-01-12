@@ -13,7 +13,7 @@ const FileSelect2SC = () => {
 
   const fetchFileList = async () => {
     try {
-      const response = await fetch('/fileList2SC');
+      const response = await fetch('http://ymq.xqzyyds.top:3001/fileList2SC');
       const data = await response.json();
       setFileList(data);
     } catch (error) {
@@ -29,7 +29,7 @@ const FileSelect2SC = () => {
     const formData = new FormData();
     formData.append('fileSC', file);
 
-    fetch('/upload2SC', {
+    fetch('http://ymq.xqzyyds.top:3001/upload2SC', {
       method: 'POST',
       body: formData,
     })
