@@ -57,7 +57,7 @@ const FileSelect2SC = () => {
     setPath(formattedFileName);
 
     try {
-      const response = await fetch(`http://ymq.xqzyyds.top:3001/CY/${formattedFileName}`);
+      const response = await fetch(`/CY/${formattedFileName}`);
       const data = await response.text();
       console.log('Selected File Content:', data);
     } catch (error) {
